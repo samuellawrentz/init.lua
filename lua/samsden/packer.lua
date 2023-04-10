@@ -57,4 +57,5 @@ use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 end}
 use 'nvim-tree/nvim-web-devicons'
 use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+use 'wakatime/vim-wakatime'
 end)
