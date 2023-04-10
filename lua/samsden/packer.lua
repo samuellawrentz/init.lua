@@ -58,4 +58,8 @@ end}
 use 'nvim-tree/nvim-web-devicons'
 use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
 use 'wakatime/vim-wakatime'
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+}
 end)

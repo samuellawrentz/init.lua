@@ -5,6 +5,11 @@ local ThePrimeagenGroup = augroup('ThePrimeagen', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
+vim.cmd([[
+  augroup filetypedetect
+    autocmd! BufNewFile,BufFilePre,BufRead *.mdx set filetype=markdown
+  augroup END
+]])
 
 function R(name)
     require("plenary.reload").reload_module(name)

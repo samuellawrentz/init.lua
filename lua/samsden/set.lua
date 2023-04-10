@@ -1,6 +1,9 @@
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
-
+vim.g.copilot_filetypes = {
+    markdown = true,
+    mdx = true
+}
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
