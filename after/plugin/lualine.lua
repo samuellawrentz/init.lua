@@ -1,6 +1,9 @@
 local lualine = require('lualine')
 
 local config = {
+    options = {
+        globalstatus = true
+    },
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
@@ -10,7 +13,7 @@ local config = {
         lualine_z = {
             {
                 'datetime',
-                style = "%H:%M"
+                style = "%a %b %d, %H:%M"
             }
         }
     }

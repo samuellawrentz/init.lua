@@ -4,7 +4,27 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- Better escape using jk in insert and terminal mode
 keymap("i", "jk", "<ESC>", default_opts)
-keymap("t", "jk", "<C-\\><C-n>", default_opts)
+-- keymap("t", "jk", "<C-\\><C-n>", default_opts)
+
+-- Save buffer on ctrl-s
+keymap("i", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
+keymap("n", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
+keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
+keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
+
+-- Yank
+keymap("n", "y", '"+y', default_opts)
+-- Yank whole line without the newline character
+keymap("n", "Y", '0"+y$', default_opts)
+
+-- Undo/Redo
+keymap("n", "U", "<C-r>", default_opts)
+
+-- Navigation
+keymap("n", "<C-j>", "5j", default_opts)
+keymap("n", "<C-k>", "5k", default_opts)
+keymap("n", "H", "^", default_opts)
+keymap("n", "L", "$", default_opts)
 
 -- Center search results
 keymap("n", "n", "nzz", default_opts)
@@ -22,8 +42,8 @@ keymap("v", ">", ">gv", default_opts)
 keymap("v", "p", '"_dP', default_opts)
 
 -- Switch buffer
-keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
-keymap("n", "<S-j>", ":bnext<CR>", default_opts)
+-- keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
+-- keymap("n", "<S-j>", ":bnext<CR>", default_opts)
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
@@ -61,7 +81,7 @@ keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', default_opts)
 -- Pin/unpin buffer
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
-keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', default_opts)
+keymap('n', '<A-w>', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
