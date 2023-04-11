@@ -12,6 +12,17 @@ vim.keymap.set('n', '?', api.tree.toggle_help,   { desc = 'Help',  buffer = bufn
 vim.keymap.set('n', 'tt', api.tree.toggle,   { desc = 'Toggle the view of the tree',  buffer = bufnr, noremap = true, silent = true, nowait = true })
 vim.keymap.set('n', 'tf', api.tree.focus,   { desc = 'Focus the tree',  buffer = bufnr, noremap = true, silent = true, nowait = true })
 
+
+
+-- Opens the tree when you start vim
+local function open_nvim_tree()
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+
+
 -- OR setup with some options
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
