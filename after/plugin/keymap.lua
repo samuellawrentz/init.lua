@@ -41,6 +41,13 @@ keymap("v", ">", ">gv", default_opts)
 -- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP', default_opts)
 
+-- Selection remaps
+keymap("n", "cw", "ciw", default_opts)
+keymap("n", "dw", "diw", default_opts)
+keymap("n", "vw", "viw", default_opts)
+keymap("n", "yw", "yiw", default_opts)
+
+
 -- Switch buffer
 -- keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
 -- keymap("n", "<S-j>", ":bnext<CR>", default_opts)
@@ -57,9 +64,6 @@ keymap("n", "<Left>", ":vertical resize +1<CR>", default_opts)
 keymap("n", "<Right>", ":vertical resize -1<CR>", default_opts)
 keymap("n", "<Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<Down>", ":resize +1<CR>", default_opts)
-
-
-local map = vim.api.nvim_set_keymap
 
 -- Move to previous/next
 keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', default_opts)
