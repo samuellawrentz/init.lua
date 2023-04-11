@@ -19,8 +19,18 @@ require("nvim-tree").setup({
     on_attach = on_attach,
     renderer = {
         group_empty = true,
+        highlight_opened_files = 'icon'
     },
     filters = {
         dotfiles = true,
     },
+    respect_buf_cwd = false,
+    view = {
+        hide_root_folder = true,
+        centralize_selection = true,
+    },
+    update_focused_file = {
+        enable = true,
+        update_root = true,
+    }
 })
