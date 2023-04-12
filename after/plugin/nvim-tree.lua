@@ -37,6 +37,7 @@ require("nvim-tree").setup({
     },
     respect_buf_cwd = false,
     view = {
+        adaptive_size = true,
         hide_root_folder = true,
         centralize_selection = true,
     },
