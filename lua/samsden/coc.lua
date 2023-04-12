@@ -6,8 +6,7 @@ local fn = vim.fn
 -- Add (Neo)Vim's native statusline support.
 -- NOTE: Please see `:h coc-status` for integrations with external plugins that
 -- provide custom statusline: lightline.vim, vim-airline.
--- === Airline is natively supported ===
--- o.statusline = o.statusline .. [[ %{coc#status()}%{get(b:,'coc_current_function','')} ]]
+-- === Airline is natively supported === o.statusline = o.statusline .. [[ %{coc#status()}%{get(b:,'coc_current_function','')} ]]
 
 local function register_mappings(mappings, default_options)
 	for mode, mode_mappings in pairs(mappings) do
@@ -75,12 +74,10 @@ end
 
 local mappings = {
 	i = { -- Insert mode
-        { "<C-u>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', { expr = true } },
-        { "<C-i>",  [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true } },
-        { "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { expr = true } },
+        { "<C-j>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', { expr = true } },
+        { "<C-k>",  [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true } },
         {'<C-F>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<Right>"', { expr = true, silent = true, nowait = true }},
         {'<C-B>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<Left>"', { expr = true, silent = true, nowait = true }},
-  --      {'<CR>',  'v:lua.MUtils.completion_confirm()', {expr = true, noremap = true}}
 	},
 	n = { -- Normal mode
         { "K", '<cmd>lua _G.show_docs()<CR>', { silent = true } },
@@ -127,3 +124,6 @@ require('samsden.utils').define_augroups({_coc = {
 
 
 register_mappings(mappings, { silent = true, noremap = true })
+
+
+
