@@ -11,6 +11,8 @@ keymap("i", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
 keymap("n", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
 keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
+keymap("i", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
+keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 
 -- Yank
 keymap("n", "y", '"+y', default_opts)

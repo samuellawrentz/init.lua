@@ -75,15 +75,15 @@ end
 
 local mappings = {
 	i = { -- Insert mode
-        { "<TAB>", 'pumvisible() ? "<C-J>" : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', { expr = true } },
-        { "<S-TAB>", 'pumvisible() ? "<C-K>" : "<C-H>"', { expr = true } },
-        { "<C-SPACE>", 'coc#refresh()', { expr = true } },
+        { "<C-u>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', { expr = true } },
+        { "<C-i>",  [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true } },
+        { "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { expr = true } },
         {'<C-F>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<Right>"', { expr = true, silent = true, nowait = true }},
         {'<C-B>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<Left>"', { expr = true, silent = true, nowait = true }},
   --      {'<CR>',  'v:lua.MUtils.completion_confirm()', {expr = true, noremap = true}}
 	},
 	n = { -- Normal mode
-        { "K", '<CMD>lua _G.show_docs()<CR>', { silent = true } },
+        { "K", '<cmd>lua _G.show_docs()<CR>', { silent = true } },
         {'[g', '<Plug>(coc-diagnostic-prev)', { noremap = false }},
         {']g', '<Plug>(coc-diagnostic-next)', { noremap = false }},
         {'gb', '<Plug>(coc-cursors-word)', { noremap = false }},

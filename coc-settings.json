@@ -1,4 +1,5 @@
 {
     "snippets.ultisnips.pythonPrompt": false,
     "eslint.autoFixOnSave": true,
+    "javascript.suggest.autoImports": true,
 }
