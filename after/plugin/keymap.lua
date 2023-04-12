@@ -47,6 +47,25 @@ keymap("n", "dw", "diw", default_opts)
 keymap("n", "vw", "viw", default_opts)
 keymap("n", "yw", "yiw", default_opts)
 
+keymap("n", 'vC', 'vi"', default_opts)
+keymap("n", 'vb', 'vib', default_opts)
+keymap("n", "vc", "vi'", default_opts)
+keymap("n", "vB", "viB", default_opts)
+-- Implment the above four keymaps for yank, delete, change
+keymap("n", "yB", "yiB", default_opts)
+keymap("n", "yb", "yib", default_opts)
+keymap("n", "yc", "yi'", default_opts)
+keymap("n", "yC", 'yi"', default_opts)
+
+keymap("n", "dB", "diB", default_opts)
+keymap("n", "db", "dib", default_opts)
+keymap("n", "dc", "di'", default_opts)
+keymap("n", "dC", 'di"', default_opts)
+
+keymap("n", "cB", "ciB", default_opts)
+keymap("n", "cb", "cib", default_opts)
+keymap("n", "cc", "ci'", default_opts)
+keymap("n", "cC", 'ci"', default_opts)
 
 -- Switch buffer
 -- keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
@@ -95,7 +114,7 @@ keymap('n', '<A-w>', '<Cmd>w|BufferClose<CR>', default_opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-keymap('n', '<C-p>', '<Cmd>BufferPick<CR>', default_opts)
+ keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
 -- Sort automatically by...
 keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)
 keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', default_opts)

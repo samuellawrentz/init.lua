@@ -29,12 +29,6 @@ local M = {}
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
     },
-    f = {
-      name = "Find",
-      f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-      g = { "<cmd>Telescope git_files<cr>", "Find Git Files" },
-    },
-
     z = {
       name = "Utils",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
