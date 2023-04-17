@@ -8,10 +8,10 @@ keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r
 -- keymap("t", "jk", "<C-\\><C-n>", default_opts)
 
 -- Save buffer on ctrl-s
-keymap("i", "<leader>s", "<cmd>update!<CR><ESC>", default_opts)
-keymap("n", "<leader>s", "<cmd>update!<CR><ESC>", default_opts)
-keymap("n", "<leader>q", "<cmd>wa<CR><ESC>", default_opts)
-keymap("i", "<leader>q", "<cmd>wa<CR><ESC>", default_opts)
+keymap("i", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
+keymap("n", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
+keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
+keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 
@@ -107,7 +107,7 @@ keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', default_opts)
 -- Pin/unpin buffer
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
-keymap('n', '<leader>cc', '<Cmd>w|BufferClose<CR>', default_opts)
+keymap('n', '<A-w>', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -119,7 +119,7 @@ keymap('n', '<leader>cc', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Magic buffer-picking mode
  keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
  keymap('n', '<leader>fg', "<cmd>Telescope resume<cr>", default_opts)
- keymap('n', '<leader>so', "<cmd>so<cr>", default_opts)
+ keymap('n', '<leader>s', "<cmd>so<cr>", default_opts)
 -- Sort automatically by...
 keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)
 keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', default_opts)
