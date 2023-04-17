@@ -1,4 +1,4 @@
-# Neovim Configuration
+# Sam's Neovim Configuration
 
 This is my personal configuration for Neovim, which includes a set of plugins that I find useful for my daily work. I have chosen these plugins for their efficiency and usability. 
 
