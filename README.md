@@ -2,6 +2,9 @@
 
 This is my personal configuration for Neovim, which includes a set of plugins that I find useful for my daily work. I have chosen these plugins for their efficiency and usability. 
 
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/51610898/232406140-b4c61b86-3e93-4910-9a51-28870645812d.png">
+
+
 ## Plugins
 
 - **telescope**: A fuzzy finder that allows for efficient searching of files, buffers, and other content within Neovim.
