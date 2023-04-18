@@ -42,7 +42,7 @@ keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
 
 -- Paste over currently selected text without yanking it
-keymap("v", "p", '"_dP', default_opts)
+keymap("v", "p", '"+dP', default_opts)
 
 -- Selection remaps
 keymap("n", "cw", "ciw", default_opts)

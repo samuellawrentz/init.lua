@@ -2,5 +2,8 @@
     "snippets.ultisnips.pythonPrompt": false,
     "eslint.autoFixOnSave": true,
     "javascript.suggest.autoImports": true,
-    "suggest.noselect": true
+    "suggest.noselect": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
 }
