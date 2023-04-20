@@ -16,9 +16,12 @@ keymap("i", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 
 -- Yank
-keymap("n", "y", '"+y', default_opts)
+keymap("n", "y", '"*y', default_opts)
+keymap("v", "y", '"*y', default_opts)
+keymap("n", "yy", '"*yy', default_opts)
+keymap("v", "yy", '"*yy', default_opts)
 -- Yank whole line without the newline character
-keymap("n", "Y", '0"+y$', default_opts)
+keymap("n", "Y", '0"*y$', default_opts)
 
 -- Undo/Redo
 keymap("n", "U", "<C-r>", default_opts)
@@ -42,7 +45,8 @@ keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
 
 -- Paste over currently selected text without yanking it
-keymap("v", "p", '"+dP', default_opts)
+keymap("v", "p", '"*dP', default_opts)
+keymap("n", "p", '"*p', default_opts)
 
 -- Selection remaps
 keymap("n", "cw", "ciw", default_opts)
