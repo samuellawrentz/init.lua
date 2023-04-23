@@ -98,20 +98,20 @@ keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', default_opts)
 keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', default_opts)
 keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
 -- Goto buffer in position...
-keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', default_opts)
-keymap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', default_opts)
-keymap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', default_opts)
-keymap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', default_opts)
-keymap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', default_opts)
-keymap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', default_opts)
-keymap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', default_opts)
-keymap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', default_opts)
-keymap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', default_opts)
-keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', default_opts)
+keymap('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', default_opts)
+keymap('n', '<leader>2', '<Cmd>BufferGoto 2<CR>', default_opts)
+keymap('n', '<leader>3', '<Cmd>BufferGoto 3<CR>', default_opts)
+keymap('n', '<leader>4', '<Cmd>BufferGoto 4<CR>', default_opts)
+keymap('n', '<leader>5', '<Cmd>BufferGoto 5<CR>', default_opts)
+keymap('n', '<leader>6', '<Cmd>BufferGoto 6<CR>', default_opts)
+keymap('n', '<leader>7', '<Cmd>BufferGoto 7<CR>', default_opts)
+keymap('n', '<leader>8', '<Cmd>BufferGoto 8<CR>', default_opts)
+keymap('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', default_opts)
+keymap('n', '<leader>0', '<Cmd>BufferLast<CR>', default_opts)
 -- Pin/unpin buffer
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
-keymap('n', '<A-w>', '<Cmd>w|BufferClose<CR>', default_opts)
+keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
