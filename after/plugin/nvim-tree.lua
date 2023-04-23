@@ -30,7 +30,8 @@ require("nvim-tree").setup({
     on_attach = on_attach,
     renderer = {
         group_empty = true,
-        highlight_opened_files = 'icon'
+        highlight_opened_files = 'icon',
+        root_folder_label = false
     },
     filters = {
         dotfiles = true,
@@ -38,7 +39,6 @@ require("nvim-tree").setup({
     respect_buf_cwd = false,
     view = {
         adaptive_size = true,
-        hide_root_folder = true,
         centralize_selection = true,
     },
     update_focused_file = {
