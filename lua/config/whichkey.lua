@@ -21,7 +21,6 @@ function M.setup()
 
 local M = {}
   local mappings = {
-    ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
 
     b = {
