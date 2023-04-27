@@ -29,7 +29,7 @@ local config = {
     options = {
         globalstatus = true,
         icons_enabled = true,
-        theme = 'moonfly',
+        theme = 'tokyonight',
         section_separators = { left = '', right = ''},
         component_separators = { left = '|', right = '|'},
         disabled_filetypes = {"coc-explorer"},
