@@ -34,14 +34,14 @@ return require('packer').startup(function(use)
         end
     })
 
-    use({
-        "neoclide/coc.nvim",
-        branch = "master",
-        run = "yarn install --frozen-lockfile",
-        config = function()
-            require("samsden.coc")
-        end
-    })
+    -- use({
+    --     "neoclide/coc.nvim",
+    --     branch = "master",
+    --     run = "yarn install --frozen-lockfile",
+    --     config = function()
+    --         require("samsden.coc")
+    --     end
+    -- })
 
     use {
         'nvim-tree/nvim-tree.lua',
@@ -82,6 +82,25 @@ use {
   end
 }
 
-
     use 'tpope/vim-commentary'
+    use 'jose-elias-alvarez/typescript.nvim'
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {                                      -- Optional
+                'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},     -- Required
+            {'hrsh7th/cmp-nvim-lsp'}, -- Required
+            {'L3MON4D3/LuaSnip'},     -- Required
+        }
+    }
 end)

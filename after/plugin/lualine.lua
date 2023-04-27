@@ -38,7 +38,7 @@ local config = {
     sections = {
         lualine_a = {{ 'mode', separator = { right = ''}}},
         lualine_b = {'branch', 'diff',
-            {'diagnostics', sources={'nvim_lsp', 'coc'}}},
+            {'diagnostics', sources={'nvim_lsp'}}},
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
