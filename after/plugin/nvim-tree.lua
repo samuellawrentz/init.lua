@@ -27,7 +27,6 @@ end
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     sync_root_with_cwd = true,
-    on_attach = on_attach,
     renderer = {
         group_empty = true,
         highlight_opened_files = 'icon',
@@ -39,6 +38,7 @@ require("nvim-tree").setup({
     respect_buf_cwd = false,
     view = {
         adaptive_size = true,
+        side = 'right',
         centralize_selection = true,
     },
     update_focused_file = {

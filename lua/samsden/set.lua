@@ -21,6 +21,7 @@ vim.g.netrw_winsize = 25
 vim.opt.timeoutlen = 300
 
 vim.opt.smartindent = true
+vim.opt.cursorline=true
 
 vim.opt.wrap = false
 
