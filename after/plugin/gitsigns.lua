@@ -1,5 +1,4 @@
 require('gitsigns').setup {
-  word_diff  = true, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
     interval = 10000,
     follow_files = true
