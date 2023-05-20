@@ -4,7 +4,8 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- Better escape using jk in insert and terminal mode
 keymap("i", "jk", "<ESC>", default_opts)
-keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true, silent = true, noremap = true })
+keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
+    { expr = true, silent = true, noremap = true })
 -- keymap("t", "jk", "<C-\\><C-n>", default_opts)
 
 -- Save buffer on ctrl-s
@@ -27,8 +28,8 @@ keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 keymap("n", "U", "<C-r>", default_opts)
 
 -- Navigation
-keymap("n", "<C-j>", "5j", default_opts)
-keymap("n", "<C-k>", "5k", default_opts)
+keymap("n", "<C-j>", "7j", default_opts)
+keymap("n", "<C-k>", "7k", default_opts)
 keymap("n", "H", "^", default_opts)
 keymap("n", "L", "$", default_opts)
 
@@ -92,8 +93,9 @@ keymap("n", "<Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<Down>", ":resize +1<CR>", default_opts)
 
 -- Move to previous/next
-keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', default_opts)
-keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', default_opts)
+keymap('n', '<leader>,', '<Cmd>BufferPrevious<CR>', default_opts)
+keymap('n', '<leader>.', '<Cmd>BufferNext<CR>', default_opts)
+
 -- Re-order to previous/next
 keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', default_opts)
 keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
@@ -121,14 +123,15 @@ keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
- keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
- keymap('n', '<leader>fg', "<cmd>Telescope resume<cr>", default_opts)
- keymap('n', '<leader>s', "<cmd>so<cr>", default_opts)
+keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
+keymap('n', '<leader>fg', "<cmd>Telescope resume<cr>", default_opts)
+keymap('n', '<leader>s', "<cmd>so<cr>", default_opts)
 -- Sort automatically by...
 keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)
 keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', default_opts)
 keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', default_opts)
 keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', default_opts)
+keymap('n', '<C-i>', '<C-^>', default_opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
