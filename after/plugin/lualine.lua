@@ -1,30 +1,5 @@
 local lualine = require('lualine')
 
--- local config = {
---     options = {
---         globalstatus = true,
---         icons_enabled = true,
---         theme = 'moonfly',
---         component_separators = {'', ''},
---         section_separators = {'', ''},
---         disabled_filetypes = {},
---         extensions = {'nvim-tree'}
---     },
---     sections = {
---         lualine_a = { 'mode' },
---         lualine_b = { 'branch' },
---         lualine_c = { 'filename' },
---         lualine_x = { 'encoding', 'fileformat', 'filetype' },
---         lualine_y = { 'progress' },
---         lualine_z = {
---             {
---                 'datetime',
---                 style = "%a %b %d, %H:%M"
---             }
---         }
---     }
--- }
-
 local config = {
     options = {
         globalstatus = true,
