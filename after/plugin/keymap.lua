@@ -124,7 +124,7 @@ keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
 keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
-keymap('n', '<leader>fg', "<cmd>Telescope resume<cr>", default_opts)
+keymap('n', '<leader>fG', "<cmd>Telescope resume<cr>", default_opts)
 keymap('n', '<leader>s', "<cmd>so<cr>", default_opts)
 -- Sort automatically by...
 keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)

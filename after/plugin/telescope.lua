@@ -3,6 +3,7 @@ vim.keymap.set('n', '<leader>ff', function()
 	builtin.live_grep()
 end)
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })<CR>]], { noremap = true })
 
 local is_git_dir = function()
   return os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
