@@ -81,6 +81,9 @@ keymap("n", "cC", 'ci"', default_opts)
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
+keymap("n", "<cr>", "ciw", default_opts)
+keymap("n", "<C-d>", "<C-d>zz", default_opts)
+keymap("n", "<C-u>", "<C-u>zz", default_opts)
 
 -- Move selected line / block of text in visual mode
 keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)

@@ -40,6 +40,9 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+local os = require('os')
+
+vim.api.nvim_set_keymap('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]], {noremap = true, silent = true})
 
 -- vim.opt.colorcolumn = "80"
 
