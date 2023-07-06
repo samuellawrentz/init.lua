@@ -27,3 +27,9 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         end
     end,
 })
+require('telescope').setup{
+	defaults = {
+		path_display={"smart"},
+        initial_mode="normal"
+	}
+}
