@@ -21,6 +21,10 @@
     "winblend": 15,
     "rounded": true
   },
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.virtualTextLimitInOneLine": 1,
+    "list.source.diagnostics.pathFormat": "short",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   }

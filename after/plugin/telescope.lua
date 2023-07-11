@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         if vim.fn.isdirectory(bufferPath) ~= 0 then
             -- vim.api.nvim_buf_delete(0, { force = true })
             if is_git_dir() == 0 then
-                builtin.git_files({ show_untracked = true })
+                builtin.git_files()
             else
                 builtin.find_files()
             end
@@ -28,8 +28,14 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     end,
 })
 require('telescope').setup{
-	defaults = {
-		path_display={"smart"},
+    defaults = {
+        path_display={"smart"},
         initial_mode="normal"
-	}
+    },
+    pickers = {
+        git_files = {
+            show_untracked = false,
+            recurse_submodules= true,
+        }
+    }
 }
