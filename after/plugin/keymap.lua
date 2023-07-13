@@ -134,7 +134,7 @@ keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)
 keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', default_opts)
 keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', default_opts)
 keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', default_opts)
-keymap('n', '<C-i>', '<C-^>', default_opts)
+keymap('n', '<C-r>', '<C-^>', default_opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)

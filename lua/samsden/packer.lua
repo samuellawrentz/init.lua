@@ -41,6 +41,13 @@ return require('packer').startup(function(use)
             require("samsden.coc")
         end
     })
+    -- use {
+    --     "epwalsh/obsidian.nvim",
+    --     event = { "BufReadPre " .. vim.fn.expand "~" .. "/Notes/notets/**.md" },
+    --     requires ={
+    --         "hrsh7th/nvim-cmp"
+    --     }
+    -- }
 
     use {
         'nvim-tree/nvim-tree.lua',
@@ -81,6 +88,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+
 
 
     use 'tpope/vim-commentary'

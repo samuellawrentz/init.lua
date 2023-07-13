@@ -30,12 +30,16 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 require('telescope').setup{
     defaults = {
         path_display={"smart"},
-        initial_mode="normal"
+        initial_mode="normal",
     },
     pickers = {
         git_files = {
+        debounce = 1000,
             show_untracked = false,
             recurse_submodules= true,
+        },
+        live_grep = {
+            debounce = 1000
         }
     }
 }
