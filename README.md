@@ -7,13 +7,25 @@ Introducing Sam's Neovim Configuration, a personalized setup for the hippest tex
 ## Behold the magnificent Plugins:
 
 ✨ **telescope**: A fuzzy finder to help you find files and stuff faster than a caffeinated squirrel. 🐿️
+
 ✨ **nvim-tree**: A trusty file explorer so sleek, even James Bond would be jealous. 🕵️‍♂️
+
 ✨ **lualine**: A customizable status line that tells you everything you need to know, like a wise fortune-teller. 🔮
+
 ✨ **barbar**: A snazzy tab bar for effortlessly navigating between tabs. You'll be tab-hopping like a kangaroo on a sugar rush. 🦘
+
 ✨ **treesitter**: A syntax highlighting wizard who brings life to your code, making it as vibrant as a neon retrowave sunset. 🌆
+
 ✨ **coc**: A language server protocol client that's like having a language expert whispering code suggestions in your ear. 🤫
 ✨ **rosepine**: A colorscheme that's so enchanting, it'll turn your coding session into a magical fairytale. ✨🧚‍♀️
+
 ✨ **which-key**: A helpful plugin that shows you the key to happiness... I mean, key mappings. Because who needs happiness anyway? 😜
+
+✨ **zen_mode**: A plugin for Vim that creates a distraction-free coding environment. It brings tranquility and focus to your coding experience. 🧘‍♀️
+
+✨ **neoAI**: An AI-powered Vim assistant that offers intelligent code suggestions and refactoring options. It enhances your coding efficiency and accuracy. 🤖💡
+
+✨ **harpoon**: A navigation tool for Vim that provides seamless movement between files, buffers, and tags. It helps you effortlessly navigate your codebase. ⚓🌊
 
 ## Installation is easy-peasy
 
