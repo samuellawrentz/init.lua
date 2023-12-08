@@ -88,6 +88,44 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use({
+        "Bryley/neoai.nvim",
+        requires = { "MunifTanjim/nui.nvim" },
+        cmd = {
+            "NeoAI",
+            "NeoAIOpen",
+            "NeoAIClose",
+            "NeoAIToggle",
+            "NeoAIContext",
+            "NeoAIContextOpen",
+            "NeoAIContextClose",
+            "NeoAIInject",
+            "NeoAIInjectCode",
+            "NeoAIInjectContext",
+            "NeoAIInjectContextCode",
+        },
+        config = function()
+            require("neoai").setup({
+                -- Options go here
+                ui = {
+                    output_popup_text = "Sam's Personal AI",
+                    input_popup_text = "Prompt",
+                    width = 40,               -- As percentage eg. 30%
+                    output_popup_height = 80, -- As percentage eg. 80%
+                    submit = "<Enter>",       -- Key binding to submit the prompt
+                },
+                prompts = {
+                    context_prompt = function(context)
+                        return "Hey, I'd like to provide some context for future "
+                            .. "messages. Here is the code/text that I want to refer "
+                            .. "to in our upcoming conversations:\n\n"
+                            .. context
+                            .. "\n\n Note: Please give a brief, focused response, cutting off any unnecessary details or lengthy explanations."
+                    end,
+                },
+            })
+        end,
+    })
 
 
 

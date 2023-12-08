@@ -16,6 +16,15 @@ keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 
+-- For normal mode
+keymap('n', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
+
+-- For visual and visual line modes
+keymap('x', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
+keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
+
+
 -- Yank
 -- keymap("n", "y", '"*y', default_opts)
 -- keymap("v", "y", '"*y', default_opts)
