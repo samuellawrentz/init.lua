@@ -114,6 +114,13 @@ return require('packer').startup(function(use)
                     output_popup_height = 80, -- As percentage eg. 80%
                     submit = "<Enter>",       -- Key binding to submit the prompt
                 },
+                models = {
+                    {
+                        name = "openai",
+                        model = "gpt-4",
+                        params = nil,
+                    },
+                },
                 prompts = {
                     context_prompt = function(context)
                         return "Hey, I'd like to provide some context for future "
