@@ -45,7 +45,6 @@ g.coc_global_extensions = {
     'coc-tsserver',
     'coc-vetur',
     'coc-vimlsp',
-    'coc-webpack',
     'coc-yaml',
     'coc-yank',
     'coc-lists',

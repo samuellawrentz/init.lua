@@ -49,6 +49,7 @@ return require('packer').startup(function(use)
     --     }
     -- }
 
+    use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
@@ -59,8 +60,7 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'nvim-tree/nvim-web-devicons'
-    use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
+    -- use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
     use 'wakatime/vim-wakatime'
     use("theprimeagen/harpoon")
     use {
@@ -88,6 +88,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+    -- Lua
     use({
         "Bryley/neoai.nvim",
         requires = { "MunifTanjim/nui.nvim" },
@@ -133,8 +134,6 @@ return require('packer').startup(function(use)
             })
         end,
     })
-
-
 
     use 'tpope/vim-commentary'
 end)

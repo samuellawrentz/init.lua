@@ -36,7 +36,6 @@ require("nvim-tree").setup({
         highlight_opened_files = 'icon',
         root_folder_label = false
     },
-    respect_buf_cwd = true,
     view = {
         relativenumber = true,
         float = {
@@ -67,6 +66,5 @@ require("nvim-tree").setup({
     },
     update_focused_file = {
         enable = true,
-        update_root = true,
     }
 })

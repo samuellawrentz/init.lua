@@ -7,7 +7,7 @@ vim.api.nvim_set_keymap('n', '<leader>fg',
     [[<cmd>lua require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })<CR>]],
     { noremap = true })
 -- Define key mapping for listing buffers using Telescope
-vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope buffers<CR>', { noremap = true, silent = true })
 
 
 local is_git_dir = function()
