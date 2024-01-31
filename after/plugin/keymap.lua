@@ -25,14 +25,6 @@ keymap('x', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
 
 
--- Yank
--- keymap("n", "y", '"*y', default_opts)
--- keymap("v", "y", '"*y', default_opts)
--- keymap("n", "yy", '"*yy', default_opts)
--- keymap("v", "yy", '"*yy', default_opts)
--- -- Yank whole line without the newline character
--- keymap("n", "Y", '0"*y$', default_opts)
-
 -- Undo/Redo
 keymap("n", "U", "<C-r>", default_opts)
 
@@ -84,9 +76,6 @@ keymap("n", "cb", "cib", default_opts)
 keymap("n", "cc", "ci'", default_opts)
 keymap("n", "cC", 'ci"', default_opts)
 
--- Switch buffer
--- keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
--- keymap("n", "<S-j>", ":bnext<CR>", default_opts)
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
@@ -111,17 +100,6 @@ keymap('n', '<leader>.', '<Cmd>BufferNext<CR>', default_opts)
 -- Re-order to previous/next
 keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', default_opts)
 keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
--- Goto buffer in position...
--- keymap('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', default_opts)
--- keymap('n', '<leader>2', '<Cmd>BufferGoto 2<CR>', default_opts)
--- keymap('n', '<leader>3', '<Cmd>BufferGoto 3<CR>', default_opts)
--- keymap('n', '<leader>4', '<Cmd>BufferGoto 4<CR>', default_opts)
--- keymap('n', '<leader>5', '<Cmd>BufferGoto 5<CR>', default_opts)
--- keymap('n', '<leader>6', '<Cmd>BufferGoto 6<CR>', default_opts)
--- keymap('n', '<leader>7', '<Cmd>BufferGoto 7<CR>', default_opts)
--- keymap('n', '<leader>8', '<Cmd>BufferGoto 8<CR>', default_opts)
--- keymap('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', default_opts)
--- keymap('n', '<leader>0', '<Cmd>BufferLast<CR>', default_opts)
 -- Pin/unpin buffer
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer

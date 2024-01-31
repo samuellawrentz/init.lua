@@ -6,6 +6,7 @@ vim.cmd.packadd('packer.nvim')
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+    use "nvim-lua/plenary.nvim"
     use {
         "folke/which-key.nvim",
         config = function()
@@ -62,7 +63,11 @@ return require('packer').startup(function(use)
 
     -- use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
     use 'wakatime/vim-wakatime'
-    use("theprimeagen/harpoon")
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { { "nvim-lua/plenary.nvim" } }
+    }
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
