@@ -12,11 +12,8 @@ Introducing Sam's Neovim Configuration, a personalized setup for the hippest tex
 
 ✨ **lualine**: A customizable status line that tells you everything you need to know, like a wise fortune-teller. 🔮
 
-✨ **barbar**: A snazzy tab bar for effortlessly navigating between tabs. You'll be tab-hopping like a kangaroo on a sugar rush. 🦘
-
 ✨ **treesitter**: A syntax highlighting wizard who brings life to your code, making it as vibrant as a neon retrowave sunset. 🌆
 
-✨ **coc**: A language server protocol client that's like having a language expert whispering code suggestions in your ear. 🤫
 ✨ **rosepine**: A colorscheme that's so enchanting, it'll turn your coding session into a magical fairytale. ✨🧚‍♀️
 
 ✨ **which-key**: A helpful plugin that shows you the key to happiness... I mean, key mappings. Because who needs happiness anyway? 😜
@@ -27,6 +24,9 @@ Introducing Sam's Neovim Configuration, a personalized setup for the hippest tex
 
 ✨ **harpoon**: A navigation tool for Vim that provides seamless movement between files, buffers, and tags. It helps you effortlessly navigate your codebase. ⚓🌊
 
+✨ **nvim-lsp-zero**: A lightweight LSP client for Neovim that provides code completion, diagnostics, and other language server features. It's a powerful tool for writing code. 🛠️
+
+
 ## Installation is easy-peasy
 
 Just have Neovim installed, clone the repo, and move the goodies to `~/.config/nvim/`. Boom! You're ready to rock and roll! 🤘
@@ -36,3 +36,5 @@ Just have Neovim installed, clone the repo, and move the goodies to `~/.config/n
 Fire up Neovim, bask in the awesomeness, and prepare for unstoppable coding bliss. Customize the config to your heart's desire by tweaking the files in `~/.config/nvim/`. It's like sculpting your own coding utopia. 🌈
 
 That's all, folks! Get ready to code, laugh, and conquer the universe. May your bugs be rare, your code be elegant, and your coffee be strong. ☕ Happy vimming! 😎
+
+### I use native LSP which is awesome

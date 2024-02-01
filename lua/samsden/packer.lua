@@ -34,22 +34,23 @@ return require('packer').startup(function(use)
         end
     })
 
-    use({
-        "neoclide/coc.nvim",
-        branch = "master",
-        run = "yarn install --frozen-lockfile",
-        config = function()
-            require("samsden.coc")
-        end
-    })
-    -- use {
-    --     "epwalsh/obsidian.nvim",
-    --     event = { "BufReadPre " .. vim.fn.expand "~" .. "/Notes/notets/**.md" },
-    --     requires ={
-    --         "hrsh7th/nvim-cmp"
-    --     }
-    -- }
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            --- Uncomment the two plugins below if you want to manage the language servers from neovim
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
+            {'onsails/lspkind.nvim'},
 
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'L3MON4D3/LuaSnip' },
+        }
+    }
     use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-tree/nvim-tree.lua',

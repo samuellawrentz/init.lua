@@ -4,7 +4,7 @@ local config = {
     options = {
         globalstatus = true,
         icons_enabled = true,
-        theme = 'tokyonight',
+        -- theme = 'tokyonight',
         section_separators = { left = '', right = '' },
         component_separators = { left = '|', right = '|' },
         disabled_filetypes = { "coc-explorer" },
@@ -13,7 +13,7 @@ local config = {
     sections = {
         lualine_a = { { 'mode', separator = { right = '' } } },
         lualine_b = { 'branch', 'diff',
-            { 'diagnostics', sources = { 'nvim_lsp', 'coc' } } },
+            { 'diagnostics', sources = { 'nvim_lsp' } } },
         lualine_c = { 'filename' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },

@@ -4,8 +4,6 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- Better escape using jk in insert and terminal mode
 keymap("i", "jk", "<ESC>", default_opts)
-keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-    { expr = true, silent = true, noremap = true })
 -- keymap("t", "jk", "<C-\\><C-n>", default_opts)
 
 -- Save buffer on ctrl-s
@@ -13,8 +11,6 @@ keymap("i", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
 keymap("n", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
 keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
-keymap("i", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
-keymap("n", "<A-t>", "<cmd>CocCommand eslint.executeAutofix<CR>", default_opts)
 
 -- For normal mode
 keymap('n', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
