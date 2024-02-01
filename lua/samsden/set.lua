@@ -1,14 +1,14 @@
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
--- vim.g.copilot_assume_mapped = true
 vim.g.copilot_filetypes = {
     markdown = true,
     mdx = true
 }
--- vim.g.copilot_no_tab_map = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 0
+vim.opt.splitright = true -- vertical split to the right, for github copilot panel C-c
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -41,9 +41,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-local os = require('os')
 
 vim.api.nvim_set_keymap('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]],
     { noremap = true, silent = true })
 
--- vim.opt.colorcolumn = "80"

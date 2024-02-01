@@ -100,14 +100,6 @@ keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
 keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
--- Wipeout buffer
---                 :BufferWipeout
--- Close commands
---                 :BufferCloseAllButCurrent
---                 :BufferCloseAllButPinned
---                 :BufferCloseAllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
 keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
 keymap('n', '<leader>fG', "<cmd>Telescope resume<cr>", default_opts)
@@ -119,7 +111,15 @@ keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', default_opts)
 keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', default_opts)
 keymap('n', '<C-r>', '<C-^>', default_opts)
 
--- Other:
--- :BarbarEnable - enables barbar (enabled by default)
--- :BarbarDisable - very bad command, should never be used
 keymap("t", "<esc>", [[<C-\><C-n>]], default_opts)
+
+-- Copilot keymaps
+keymap("i", "<C-g>", "<Plug>(copilot-accept-word)", default_opts)
+keymap("i", "<C-d>", "<Plug>(copilot-next)", default_opts)
+keymap("i", "<C-f>", "<Plug>(copilot-previous)", default_opts)
+keymap("i", "<C-v>", "<Plug>(copilot-accept-line)", default_opts)
+keymap("i", "<C-c>", "<Cmd>Copilot<CR>", default_opts)
+
+
+
+
