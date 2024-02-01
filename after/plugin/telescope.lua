@@ -6,8 +6,15 @@ vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 vim.api.nvim_set_keymap('n', '<leader>fg',
     [[<cmd>lua require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })<CR>]],
     { noremap = true })
+
 -- Define key mapping for listing buffers using Telescope
 vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics bufnr=0<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lt', ':Telescope lsp_type_definitions<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lo', ':Telescope lsp_outgoing_calls<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>li', ':Telescope lsp_incoming_calls<CR>', { noremap = true, silent = true })
 
 
 local is_git_dir = function()
@@ -27,6 +34,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         end
     end,
 })
+
 require('telescope').setup {
     defaults = {
         path_display = { "smart" },
