@@ -21,6 +21,10 @@ keymap('x', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
 
 
+keymap('n', '<leader>or', ':OpenInGHRepo <CR>', { noremap = true, silent = true })
+keymap('n', '<leader>of', ':OpenInGHFile <CR>', { noremap = true, silent = true })
+keymap('v', '<leader>ol', ':OpenInGHFileLines <CR>', { noremap = true, silent = true })
+
 -- Undo/Redo
 keymap("n", "U", "<C-r>", default_opts)
 
