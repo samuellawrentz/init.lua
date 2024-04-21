@@ -31,6 +31,13 @@ require('mason-lspconfig').setup({
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
+local lspconfig = require('lspconfig')
+local lspconfig_util = require('lspconfig.util')
+
+ lspconfig.eslint.setup {
+    root_dir = lspconfig_util.root_pattern(".git", "package.json"),
+  }
+
 cmp.setup({
     sources = {
         { name = 'path' },

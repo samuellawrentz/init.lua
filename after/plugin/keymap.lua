@@ -25,8 +25,8 @@ keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true }
 keymap("n", "U", "<C-r>", default_opts)
 
 -- Navigation
-keymap("n", "<C-j>", "7j", default_opts)
-keymap("n", "<C-k>", "7k", default_opts)
+keymap("n", "<C-j>", "45j", default_opts)
+keymap("n", "<C-k>", "45k", default_opts)
 keymap("n", "H", "^", default_opts)
 keymap("n", "L", "$", default_opts)
 

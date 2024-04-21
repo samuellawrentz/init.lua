@@ -39,6 +39,9 @@ require('telescope').setup {
     defaults = {
         path_display = { "smart" },
         initial_mode = "normal",
+        layout_config = {
+            preview_width = 0.55,
+        }
     },
     pickers = {
         git_files = {
