@@ -8,7 +8,12 @@ vim.api.nvim_set_keymap('n', '<leader>fg',
     { noremap = true })
 
 -- Define key mapping for listing buffers using Telescope
-vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope buffers<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-f>', function()
+    builtin.buffers({
+        sort_mru = true,
+        ignore_current_buffer = true,
+    })
+end, { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics bufnr=0<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>', { noremap = true, silent = true })
@@ -39,6 +44,9 @@ require('telescope').setup {
     defaults = {
         path_display = { "smart" },
         initial_mode = "normal",
+        layout_config = {
+            preview_width = 0.55,
+        }
     },
     pickers = {
         git_files = {

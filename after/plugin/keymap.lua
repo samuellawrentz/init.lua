@@ -15,18 +15,23 @@ keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 -- For normal mode
 keymap('n', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>bt', ':BufferTabsToggle<CR>', { noremap = true, silent = true })
 
 -- For visual and visual line modes
 keymap('x', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
 
 
+keymap('n', '<leader>or', ':OpenInGHRepo <CR>', { noremap = true, silent = true })
+keymap('n', '<leader>of', ':OpenInGHFile <CR>', { noremap = true, silent = true })
+keymap('v', '<leader>of', ':OpenInGHFileLines <CR>', { noremap = true, silent = true })
+
 -- Undo/Redo
 keymap("n", "U", "<C-r>", default_opts)
 
 -- Navigation
-keymap("n", "<C-j>", "7j", default_opts)
-keymap("n", "<C-k>", "7k", default_opts)
+keymap("n", "<C-j>", "45j", default_opts)
+keymap("n", "<C-k>", "45k", default_opts)
 keymap("n", "H", "^", default_opts)
 keymap("n", "L", "$", default_opts)
 
@@ -100,14 +105,6 @@ keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
 keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
--- Wipeout buffer
---                 :BufferWipeout
--- Close commands
---                 :BufferCloseAllButCurrent
---                 :BufferCloseAllButPinned
---                 :BufferCloseAllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
 keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
 keymap('n', '<leader>fG', "<cmd>Telescope resume<cr>", default_opts)
@@ -119,7 +116,15 @@ keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', default_opts)
 keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', default_opts)
 keymap('n', '<C-r>', '<C-^>', default_opts)
 
--- Other:
--- :BarbarEnable - enables barbar (enabled by default)
--- :BarbarDisable - very bad command, should never be used
 keymap("t", "<esc>", [[<C-\><C-n>]], default_opts)
+
+-- Copilot keymaps
+keymap("i", "<C-g>", "<Plug>(copilot-accept-word)", default_opts)
+keymap("i", "<C-d>", "<Plug>(copilot-next)", default_opts)
+keymap("i", "<C-f>", "<Plug>(copilot-previous)", default_opts)
+keymap("i", "<C-v>", "<Plug>(copilot-accept-line)", default_opts)
+keymap("i", "<C-c>", "<Cmd>Copilot<CR>", default_opts)
+
+
+
+
