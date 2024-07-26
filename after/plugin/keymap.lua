@@ -15,6 +15,7 @@ keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 -- For normal mode
 keymap('n', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>bt', ':BufferTabsToggle<CR>', { noremap = true, silent = true })
 
 -- For visual and visual line modes
 keymap('x', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
@@ -23,7 +24,7 @@ keymap('x', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true }
 
 keymap('n', '<leader>or', ':OpenInGHRepo <CR>', { noremap = true, silent = true })
 keymap('n', '<leader>of', ':OpenInGHFile <CR>', { noremap = true, silent = true })
-keymap('v', '<leader>ol', ':OpenInGHFileLines <CR>', { noremap = true, silent = true })
+keymap('v', '<leader>of', ':OpenInGHFileLines <CR>', { noremap = true, silent = true })
 
 -- Undo/Redo
 keymap("n", "U", "<C-r>", default_opts)
