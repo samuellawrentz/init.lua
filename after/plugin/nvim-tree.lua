@@ -24,7 +24,7 @@ local function open_nvim_tree()
 end
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 local HEIGHT_RATIO = 0.8 -- You can change this
-local WIDTH_RATIO = 0.5  -- You can change this too
+local WIDTH_RATIO = 0.3  -- You can change this too
 
 
 -- OR setup with some options
@@ -34,12 +34,17 @@ require("nvim-tree").setup({
     renderer = {
         group_empty = true,
         highlight_opened_files = 'icon',
-        root_folder_label = false
+        root_folder_label = false,
+        icons = {
+            show = {
+                folder_arrow = false
+            }
+        }
     },
     view = {
-        relativenumber = true,
+        -- relativenumber = true,
         float = {
-            enable = true,
+            enable = false,
             open_win_config = function()
                 local screen_w = vim.opt.columns:get()
                 local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -60,9 +65,10 @@ require("nvim-tree").setup({
                 }
             end,
         },
-        width = function()
-            return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-        end,
+        width = 30
+        -- width = function()
+        --     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+        -- end,
     },
     update_focused_file = {
         enable = true,
