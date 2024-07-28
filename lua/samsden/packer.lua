@@ -122,5 +122,8 @@ return require('packer').startup(function(use)
     use 'nvim-tree/nvim-web-devicons'
     use 'wakatime/vim-wakatime'
     use 'windwp/nvim-autopairs'
+    use 'windwp/nvim-ts-autotag'
     use 'folke/zen-mode.nvim'
+    use 'gbprod/yanky.nvim'
+    use 'kylechui/nvim-surround'
 end)
