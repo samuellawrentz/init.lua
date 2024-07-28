@@ -2,6 +2,7 @@ local lualine = require('lualine')
 
 local config = {
     options = {
+        theme='rose-pine',
         globalstatus = true,
         icons_enabled = true,
         section_separators = { left = '', right = '' },

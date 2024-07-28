@@ -1,5 +1,4 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd.packadd('packer.nvim')
 
@@ -18,20 +17,9 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require('gitsigns').setup()
-        end
-    }
-
-
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
     })
 
     use {
@@ -51,19 +39,14 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
-    use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
-        config = function()
-            require("nvim-tree").setup {}
-        end
     }
 
     -- use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
-    use 'wakatime/vim-wakatime'
     use {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
@@ -73,7 +56,6 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
-    use 'windwp/nvim-autopairs'
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -83,18 +65,6 @@ return require('packer').startup(function(use)
         end,
     }
 
-    -- Lua
-    use {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    }
-    -- Lua
     use({
         "Bryley/neoai.nvim",
         requires = { "MunifTanjim/nui.nvim" },
@@ -112,6 +82,7 @@ return require('packer').startup(function(use)
             "NeoAIInjectContextCode",
         },
         config = function()
+
             require("neoai").setup({
                 -- Options go here
                 ui = {
@@ -141,9 +112,15 @@ return require('packer').startup(function(use)
         end,
     })
 
+    use 'lewis6991/gitsigns.nvim'
     use 'tpope/vim-commentary'
     use "almo7aya/openingh.nvim"
     use "lukas-reineke/indent-blankline.nvim"
     use 'arkav/lualine-lsp-progress'
     use 'gorbit99/codewindow.nvim'
+    use 'rmagatti/auto-session'
+    use 'nvim-tree/nvim-web-devicons'
+    use 'wakatime/vim-wakatime'
+    use 'windwp/nvim-autopairs'
+    use 'folke/zen-mode.nvim'
 end)
