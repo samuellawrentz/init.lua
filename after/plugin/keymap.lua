@@ -30,8 +30,8 @@ keymap('v', '<leader>of', ':OpenInGHFileLines <CR>', { noremap = true, silent = 
 keymap("n", "U", "<C-r>", default_opts)
 
 -- Navigation
-keymap("n", "<C-j>", "45j", default_opts)
-keymap("n", "<C-k>", "45k", default_opts)
+keymap("n", "<C-j>", "10j", default_opts)
+keymap("n", "<C-k>", "10k", default_opts)
 keymap("n", "H", "^", default_opts)
 keymap("n", "L", "$", default_opts)
 
@@ -104,7 +104,7 @@ keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
 -- Pin/unpin buffer
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
 -- Close buffer
-keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
+-- keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Magic buffer-picking mode
 keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
 keymap('n', '<leader>fG', "<cmd>Telescope resume<cr>", default_opts)
@@ -124,7 +124,4 @@ keymap("i", "<C-d>", "<Plug>(copilot-next)", default_opts)
 keymap("i", "<C-f>", "<Plug>(copilot-previous)", default_opts)
 keymap("i", "<C-v>", "<Plug>(copilot-accept-line)", default_opts)
 keymap("i", "<C-c>", "<Cmd>Copilot<CR>", default_opts)
-
-
-
 
