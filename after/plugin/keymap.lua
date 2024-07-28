@@ -30,8 +30,8 @@ keymap('v', '<leader>of', ':OpenInGHFileLines <CR>', { noremap = true, silent = 
 keymap("n", "U", "<C-r>", default_opts)
 
 -- Navigation
-keymap("n", "<C-j>", "45j", default_opts)
-keymap("n", "<C-k>", "45k", default_opts)
+keymap("n", "<C-j>", "10j", default_opts)
+keymap("n", "<C-k>", "10k", default_opts)
 keymap("n", "H", "^", default_opts)
 keymap("n", "L", "$", default_opts)
 

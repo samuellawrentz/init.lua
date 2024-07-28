@@ -130,8 +130,8 @@ return require('packer').startup(function(use)
                 },
                 prompts = {
                     context_prompt = function(context)
-                        return "Hey, I'd like to provide some context for future "
-                            .. "messages. Here is the code/text that I want to refer "
+                        return "Hey, I'd like to provide some context for future"
+                            .. "messages. Here is the code/text that I want to refer"
                             .. "to in our upcoming conversations:\n\n"
                             .. context
                             .. "\n\n Note: Please give a brief, focused response, cutting off any unnecessary details or lengthy explanations."
@@ -145,4 +145,5 @@ return require('packer').startup(function(use)
     use "almo7aya/openingh.nvim"
     use "lukas-reineke/indent-blankline.nvim"
     use 'arkav/lualine-lsp-progress'
+    use 'gorbit99/codewindow.nvim'
 end)
