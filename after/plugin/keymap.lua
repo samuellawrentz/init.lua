@@ -52,20 +52,15 @@ keymap("v", ">", ">gv", default_opts)
 -- keymap("n", "p", '"*p', default_opts)
 
 -- Selection remaps
-keymap("n", "cw", "ciw", default_opts)
-keymap("n", "dw", "diw", default_opts)
+keymap("n", "cw", '"_ciw', default_opts)
+keymap("n", "dw", '"_diw', default_opts)
 keymap("n", "vw", "viw", default_opts)
-keymap("n", "yw", "yiw", default_opts)
 
 keymap("n", 'vC', 'vi"', default_opts)
 keymap("n", 'vb', 'vib', default_opts)
 keymap("n", "vc", "vi'", default_opts)
 keymap("n", "vB", "viB", default_opts)
 -- Implment the above four keymaps for yank, delete, change
-keymap("n", "yB", "yiB", default_opts)
-keymap("n", "yb", "yib", default_opts)
-keymap("n", "yc", "yi'", default_opts)
-keymap("n", "yC", 'yi"', default_opts)
 
 keymap("n", "dB", "diB", default_opts)
 keymap("n", "db", "dib", default_opts)
@@ -74,13 +69,13 @@ keymap("n", "dC", 'di"', default_opts)
 
 keymap("n", "cB", "ciB", default_opts)
 keymap("n", "cb", "cib", default_opts)
-keymap("n", "cc", "ci'", default_opts)
-keymap("n", "cC", 'ci"', default_opts)
+keymap("n", "cc", "\"_ci'", default_opts)
+keymap("n", "cC", '"_ci"', default_opts)
 
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
-keymap("n", "<cr>", "ciw", default_opts)
+keymap("n", "<cr>", '"_ciw', default_opts)
 keymap("n", "<C-d>", "<C-d>zz", default_opts)
 keymap("n", "<C-u>", "<C-u>zz", default_opts)
 
@@ -94,26 +89,10 @@ keymap("n", "<Right>", ":vertical resize -1<CR>", default_opts)
 keymap("n", "<Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<Down>", ":resize +1<CR>", default_opts)
 
--- Move to previous/next
-keymap('n', '<leader>,', '<Cmd>BufferPrevious<CR>', default_opts)
-keymap('n', '<leader>.', '<Cmd>BufferNext<CR>', default_opts)
-
--- Re-order to previous/next
-keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', default_opts)
-keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', default_opts)
--- Pin/unpin buffer
-keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', default_opts)
--- Close buffer
--- keymap('n', '<leader>w', '<Cmd>w|BufferClose<CR>', default_opts)
 -- Magic buffer-picking mode
 keymap('n', '<C-p>', "<cmd>Telescope git_files<cr>", default_opts)
 keymap('n', '<leader>fG', "<cmd>Telescope resume<cr>", default_opts)
 keymap('n', '<leader>s', "<cmd>so<cr>", default_opts)
--- Sort automatically by...
-keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', default_opts)
-keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', default_opts)
-keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', default_opts)
-keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', default_opts)
 keymap('n', '<C-r>', '<C-^>', default_opts)
 
 keymap("t", "<esc>", [[<C-\><C-n>]], default_opts)
