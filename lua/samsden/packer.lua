@@ -126,4 +126,5 @@ return require('packer').startup(function(use)
     use 'folke/zen-mode.nvim'
     use 'gbprod/yanky.nvim'
     use 'kylechui/nvim-surround'
+    use 'axkirillov/hbac.nvim'
 end)

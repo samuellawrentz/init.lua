@@ -1,4 +1,5 @@
 local builtin = require('telescope.builtin')
+
 vim.keymap.set('n', '<leader>ff', function()
     builtin.live_grep()
 end)
@@ -7,13 +8,19 @@ vim.api.nvim_set_keymap('n', '<leader>fg',
     [[<cmd>lua require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })<CR>]],
     { noremap = true })
 
--- Define key mapping for listing buffers using Telescope
+vim.keymap.set('n', '<leader>fb', function()
+    require("telescope").extensions.hbac.buffers({
+        path_display = { "smart" },
+    })
+end, { noremap = true, silent = true })
+
 vim.keymap.set('n', '<C-f>', function()
     builtin.buffers({
         sort_mru = true,
         ignore_current_buffer = true,
     })
 end, { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics bufnr=0<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>', { noremap = true, silent = true })
