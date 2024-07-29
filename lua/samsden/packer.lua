@@ -127,4 +127,5 @@ return require('packer').startup(function(use)
     use 'gbprod/yanky.nvim'
     use 'kylechui/nvim-surround'
     use 'axkirillov/hbac.nvim'
+    use 'leath-dub/snipe.nvim'
 end)
