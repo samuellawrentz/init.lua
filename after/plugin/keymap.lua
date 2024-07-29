@@ -12,6 +12,10 @@ keymap("n", "<C-s>", "<cmd>update!<CR><ESC>", default_opts)
 keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 
+-- window navigation
+keymap("n", "\\", "<C-w>p", default_opts)
+keymap("n", ",", "<C-w>", default_opts)
+
 -- For normal mode
 keymap('n', '<leader>ai', ':NeoAI<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>ac', ':NeoAIContext<CR>', { noremap = true, silent = true })
