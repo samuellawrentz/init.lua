@@ -35,11 +35,6 @@ require("nvim-tree").setup({
         group_empty = true,
         highlight_opened_files = 'icon',
         root_folder_label = false,
-        icons = {
-            show = {
-                folder_arrow = false
-            }
-        }
     },
     view = {
         -- relativenumber = true,
