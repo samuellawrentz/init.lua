@@ -13,7 +13,7 @@ keymap("n", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 keymap("i", "<C-q>", "<cmd>wa<CR><ESC>", default_opts)
 
 -- window navigation
-keymap("n", "\\", "<C-w>p", default_opts)
+keymap("n", "\\", "<C-w>w", default_opts)
 keymap("n", ",", "<C-w>", default_opts)
 
 -- For normal mode
@@ -75,6 +75,9 @@ keymap("n", "cB", "ciB", default_opts)
 keymap("n", "cb", "cib", default_opts)
 keymap("n", "cc", "\"_ci'", default_opts)
 keymap("n", "cC", '"_ci"', default_opts)
+keymap("n", "x", '"_x', default_opts)
+keymap("n", "S", '"_S', default_opts)
+keymap("n", "s", '"_s', default_opts)
 
 
 -- Cancel search highlighting with ESC

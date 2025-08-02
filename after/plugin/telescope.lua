@@ -61,7 +61,7 @@ require('telescope').setup {
             recurse_submodules = true,
         },
         live_grep = {
-            debounce = 200
+            debounce = 50
         }
     }
 }

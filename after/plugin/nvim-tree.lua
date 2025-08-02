@@ -67,5 +67,8 @@ require("nvim-tree").setup({
     },
     update_focused_file = {
         enable = true,
+    },
+    live_filter = {
+        always_show_folders = false
     }
 })

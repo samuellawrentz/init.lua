@@ -41,6 +41,7 @@ local lspconfig_util = require('lspconfig.util')
 cmp.setup({
     sources = {
         { name = 'path' },
+        { name = 'tailwind-tools' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'buffer',  keyword_length = 3 },

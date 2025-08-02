@@ -65,6 +65,7 @@ return require('packer').startup(function(use)
         end,
     }
 
+
     use({
         "Bryley/neoai.nvim",
         requires = { "MunifTanjim/nui.nvim" },
@@ -112,6 +113,16 @@ return require('packer').startup(function(use)
         end,
     })
 
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'nvim-tree/nvim-web-devicons',
+        },
+    }
+
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
     use 'lewis6991/gitsigns.nvim'
     use 'tpope/vim-commentary'
     use "almo7aya/openingh.nvim"
@@ -126,6 +137,6 @@ return require('packer').startup(function(use)
     use 'folke/zen-mode.nvim'
     use 'gbprod/yanky.nvim'
     use 'kylechui/nvim-surround'
-    use 'axkirillov/hbac.nvim'
+    use 'cameronr/hbac.nvim'
     use 'leath-dub/snipe.nvim'
 end)
