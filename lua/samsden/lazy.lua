@@ -235,6 +235,12 @@ require("lazy").setup({
       require("snipe").setup()
     end,
   },
+
+  -- Linting
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+  },
 }, {
   -- Lazy.nvim configuration
   ui = {

@@ -8,7 +8,7 @@ end)
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'ts_ls', 'eslint' },
+    ensure_installed = { 'ts_ls' },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -24,12 +24,7 @@ require('mason-lspconfig').setup({
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-local lspconfig = require('lspconfig')
-local lspconfig_util = require('lspconfig.util')
 
- lspconfig.eslint.setup {
-    root_dir = lspconfig_util.root_pattern(".git", "package.json"),
-  }
 
 cmp.setup({
     sources = {
@@ -59,8 +54,4 @@ cmp.setup({
     }),
 })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-  command = 'silent! EslintFixAll',
-  group = vim.api.nvim_create_augroup('ESlintFormatting', {}),
-})
+
