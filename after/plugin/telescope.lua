@@ -1,32 +1,6 @@
 local builtin = require('telescope.builtin')
 
-vim.keymap.set('n', '<leader>ff', function()
-    builtin.live_grep()
-end)
-vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
-vim.api.nvim_set_keymap('n', '<leader>fg',
-    [[<cmd>lua require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })<CR>]],
-    { noremap = true })
-
-vim.keymap.set('n', '<leader>fb', function()
-    require("telescope").extensions.hbac.buffers({
-        path_display = { "smart" },
-    })
-end, { noremap = true, silent = true })
-
-vim.keymap.set('n', '<C-f>', function()
-    builtin.buffers({
-        sort_mru = true,
-        ignore_current_buffer = true,
-    })
-end, { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics bufnr=0<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ls', ':Telescope lsp_document_symbols<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lt', ':Telescope lsp_type_definitions<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lo', ':Telescope lsp_outgoing_calls<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>li', ':Telescope lsp_incoming_calls<CR>', { noremap = true, silent = true })
+-- Telescope keybindings have been moved to lua/config/whichkey.lua for better organization
 
 
 -- local is_git_dir = function()

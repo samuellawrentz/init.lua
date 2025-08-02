@@ -1,3 +1,3 @@
     local snipe = require("snipe")
     snipe.setup()
-    vim.keymap.set("n", "<leader>fj", function() snipe.open_buffer_menu() end)
+    -- Snipe keybindings have been moved to lua/config/whichkey.lua for better organization

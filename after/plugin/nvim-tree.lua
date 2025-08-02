@@ -8,12 +8,7 @@ vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup()
 
 local api = require("nvim-tree.api")
-vim.keymap.set('n', '?', api.tree.toggle_help,
-    { desc = 'Help', buffer = bufnr, noremap = true, silent = true, nowait = true })
-vim.keymap.set('n', 'tf', api.tree.toggle,
-    { desc = 'Toggle the view of the tree', buffer = bufnr, noremap = true, silent = true, nowait = true })
-vim.keymap.set('n', 'tt', api.tree.focus,
-    { desc = 'Focus the tree', buffer = bufnr, noremap = true, silent = true, nowait = true })
+-- Nvim-tree keybindings have been moved to lua/config/whichkey.lua for better organization
 
 
 
