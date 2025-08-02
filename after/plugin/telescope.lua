@@ -31,8 +31,8 @@ require('telescope').setup {
     },
     pickers = {
         git_files = {
-            show_untracked = false,
-            recurse_submodules = true,
+            show_untracked = true,
+            recurse_submodules = false,
         },
         live_grep = {
             debounce = 50

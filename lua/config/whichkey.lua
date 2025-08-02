@@ -153,13 +153,6 @@ function M.setup()
         { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
         { "gr", ":Telescope lsp_references<CR>", desc = "Go to references", nowait = false, remap = false },
 
-        -- Copilot
-        { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
-        { "<C-d>", "<Plug>(copilot-next)", mode = "i", desc = "Next Copilot suggestion", nowait = false, remap = false },
-        { "<C-f>", "<Plug>(copilot-previous)", mode = "i", desc = "Previous Copilot suggestion", nowait = false, remap = false },
-        { "<C-v>", "<Plug>(copilot-accept-line)", mode = "i", desc = "Accept Copilot line", nowait = false, remap = false },
-        { "<C-c>", "<Cmd>Copilot<CR>", mode = "i", desc = "Open Copilot", nowait = false, remap = false },
-
         -- Tree navigation
         { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
         { "tf", api.tree.toggle, desc = "Toggle nvim-tree", nowait = false, remap = false },
