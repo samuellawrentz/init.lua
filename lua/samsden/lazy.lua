@@ -87,7 +87,6 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<leader>a", function() require("harpoon"):list():add() end, desc = "Add to Harpoon" },
-      { "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Toggle Harpoon Menu" },
     },
   },
 
@@ -199,11 +198,7 @@ require("lazy").setup({
   {
     "gbprod/yanky.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    keys = {
-      { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
-      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
-      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
-    },
+    event = "VeryLazy",
   },
 
   -- Surround
