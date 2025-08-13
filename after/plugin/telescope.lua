@@ -3,7 +3,7 @@
 require('telescope').setup {
     defaults = {
         path_display = { "smart" },
-        initial_mode = "normal",
+        initial_mode = "insert",
         layout_config = {
             preview_width = 0.45,
         }

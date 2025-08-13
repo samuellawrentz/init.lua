@@ -236,6 +236,12 @@ require("lazy").setup({
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
   },
+
+  -- GitHub Copilot
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+  },
 }, {
   -- Lazy.nvim configuration
   ui = {

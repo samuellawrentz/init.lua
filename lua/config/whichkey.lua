@@ -35,7 +35,7 @@ function M.setup()
 
         -- LSP
         { "<leader>v", group = "LSP", nowait = false, remap = false },
-        { "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, desc = "Workspace symbols", nowait = false, remap = false },
+        { "<leader>vws", ":Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Workspace symbols", nowait = false, remap = false },
         { "<leader>vd", function() vim.diagnostic.open_float() end, desc = "Open diagnostic float", nowait = false, remap = false },
         { "<leader>vca", function() vim.lsp.buf.code_action() end, desc = "Code actions", nowait = false, remap = false },
         { "<leader>vrn", function() vim.lsp.buf.rename() end, desc = "Rename symbol", nowait = false, remap = false },
@@ -135,6 +135,13 @@ function M.setup()
         { "<C-r>", "<C-^>", desc = "Switch to alternate buffer", nowait = false, remap = false },
         { "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle Harpoon menu", nowait = false, remap = false },
         { "<C-f>", function() builtin.buffers({ sort_mru = true, ignore_current_buffer = true }) end, desc = "Find buffers", nowait = false, remap = false },
+
+        -- Copilot (Insert Mode)
+        { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
+        { "<C-d>", "<Plug>(copilot-next)", mode = "i", desc = "Next Copilot suggestion", nowait = false, remap = false },
+        { "<C-f>", "<Plug>(copilot-previous)", mode = "i", desc = "Previous Copilot suggestion", nowait = false, remap = false },
+        { "<C-v>", "<Plug>(copilot-accept-line)", mode = "i", desc = "Accept Copilot line", nowait = false, remap = false },
+        { "<C-c>", "<Cmd>Copilot<CR>", mode = "i", desc = "Open Copilot", nowait = false, remap = false },
 
         -- Arrow keys for resizing
         { "<Left>", ":vertical resize +1<CR>", desc = "Increase window width", nowait = false, remap = false },
