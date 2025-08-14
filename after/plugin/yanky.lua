@@ -1,4 +1,3 @@
-local mapping = require("yanky.telescope.mapping")
 require("yanky").setup({
     ring = {
         history_length = 50,
@@ -11,14 +10,8 @@ require("yanky").setup({
         on_put = true,
     },
     picker = {
-        telescope = {
+        fzf_lua = {
             use_default_mappings = true,
-            mappings = {
-                n = {
-                    o = mapping.special_put("YankyPutIndentAfterLinewise"),
-                    O = mapping.special_put("YankyPutIndentBeforeLinewise")
-                },
-            }
         }
     }
 })

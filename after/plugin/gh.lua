@@ -1,1 +1,3 @@
-require"octo".setup()
+require"octo".setup({
+    picker = "fzf-lua",
+})

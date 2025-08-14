@@ -29,16 +29,16 @@ require("lazy").setup({
     end,
   },
 
-  -- Telescope
+  -- FZF
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    cmd = "Telescope",
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "FzfLua",
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
+      { "<leader>ff", "<cmd>FzfLua live_grep<cr>", desc = "Live Grep" },
+      { "<leader>fg", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
+      { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+      { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help Tags" },
     },
   },
 
@@ -118,7 +118,7 @@ require("lazy").setup({
     "pwntester/octo.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      "ibhagwan/fzf-lua",
       "nvim-tree/nvim-web-devicons",
     },
     cmd = "Octo",
@@ -198,7 +198,7 @@ require("lazy").setup({
   -- Yanky
   {
     "gbprod/yanky.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    dependencies = { "ibhagwan/fzf-lua" },
     event = "VeryLazy",
   },
 

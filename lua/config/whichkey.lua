@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
     local wk = require("which-key")
     local harpoon = require("harpoon")
-    local builtin = require('telescope.builtin')
+    local fzf = require('fzf-lua')
     local api = require("nvim-tree.api")
     local snipe = require("snipe")
 
@@ -27,25 +27,25 @@ function M.setup()
 
         -- File operations
         { "<leader>f", group = "Find/Files", nowait = false, remap = false },
-        { "<leader>ff", function() builtin.live_grep() end, desc = "Live grep", nowait = false, remap = false },
-        { "<leader>fg", function() builtin.live_grep({ default_text = vim.fn.expand('<cword>') }) end, desc = "Grep word under cursor", nowait = false, remap = false },
-        { "<leader>fb", function() require("telescope").extensions.hbac.buffers({ path_display = { "smart" } }) end, desc = "Find buffers", nowait = false, remap = false },
-        { "<leader>fG", "<cmd>Telescope resume<cr>", desc = "Resume last search", nowait = false, remap = false },
+        { "<leader>ff", function() fzf.live_grep() end, desc = "Live grep", nowait = false, remap = false },
+        { "<leader>fg", function() fzf.grep_cword() end, desc = "Grep word under cursor", nowait = false, remap = false },
+        { "<leader>fb", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
+        { "<leader>fG", function() fzf.resume() end, desc = "Resume last search", nowait = false, remap = false },
         { "<leader>fj", function() snipe.open_buffer_menu() end, desc = "Snipe buffer menu", nowait = false, remap = false },
 
         -- LSP
         { "<leader>v", group = "LSP", nowait = false, remap = false },
-        { "<leader>vws", ":Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Workspace symbols", nowait = false, remap = false },
+        { "<leader>vws", function() fzf.lsp_live_workspace_symbols() end, desc = "Workspace symbols", nowait = false, remap = false },
         { "<leader>vd", function() vim.diagnostic.open_float() end, desc = "Open diagnostic float", nowait = false, remap = false },
         { "<leader>vca", function() vim.lsp.buf.code_action() end, desc = "Code actions", nowait = false, remap = false },
         { "<leader>vrn", function() vim.lsp.buf.rename() end, desc = "Rename symbol", nowait = false, remap = false },
 
         { "<leader>l", group = "LSP Extended", nowait = false, remap = false },
-        { "<leader>ld", ":Telescope diagnostics bufnr=0<CR>", desc = "Buffer diagnostics", nowait = false, remap = false },
-        { "<leader>ls", ":Telescope lsp_document_symbols<CR>", desc = "Document symbols", nowait = false, remap = false },
-        { "<leader>lt", ":Telescope lsp_type_definitions<CR>", desc = "Type definitions", nowait = false, remap = false },
-        { "<leader>lo", ":Telescope lsp_outgoing_calls<CR>", desc = "Outgoing calls", nowait = false, remap = false },
-        { "<leader>li", ":Telescope lsp_incoming_calls<CR>", desc = "Incoming calls", nowait = false, remap = false },
+        { "<leader>ld", function() fzf.diagnostics_document() end, desc = "Buffer diagnostics", nowait = false, remap = false },
+        { "<leader>ls", function() fzf.lsp_document_symbols() end, desc = "Document symbols", nowait = false, remap = false },
+        { "<leader>lt", function() fzf.lsp_typedefs() end, desc = "Type definitions", nowait = false, remap = false },
+        { "<leader>lo", function() fzf.lsp_outgoing_calls() end, desc = "Outgoing calls", nowait = false, remap = false },
+        { "<leader>li", function() fzf.lsp_incoming_calls() end, desc = "Incoming calls", nowait = false, remap = false },
         { "<leader>lx", function()
             local virtual_text = not vim.diagnostic.config().virtual_text
             vim.diagnostic.config({ virtual_text = virtual_text, underline = virtual_text })
@@ -68,7 +68,7 @@ function M.setup()
         { "<leader>4", function() harpoon:list():select(4) end, desc = "Harpoon file 4", nowait = false, remap = false },
 
         -- Yanky
-        { "<leader>p", function() require("telescope").extensions.yank_history.yank_history({ }) end, desc = "Open Yank History" },
+        { "<leader>p", function() require("yanky.picker").actions.put("p") end, desc = "Open Yank History" },
         { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
         { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
         { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
@@ -83,7 +83,7 @@ function M.setup()
 
         -- Misc leader mappings
         { "<leader>s", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
-        { "<leader>vh", builtin.help_tags, desc = "Help tags", nowait = false, remap = false },
+        { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
 
         -- Navigation and movement
         { "jk", "<ESC>", mode = "i", desc = "Exit insert mode", nowait = false, remap = false },
@@ -131,10 +131,10 @@ function M.setup()
         { "<C-k>", "10k", desc = "Jump up 10 lines", nowait = false, remap = false },
         { "<C-d>", "<C-d>zz", desc = "Half page down (centered)", nowait = false, remap = false },
         { "<C-u>", "<C-u>zz", desc = "Half page up (centered)", nowait = false, remap = false },
-        { "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Find git files", nowait = false, remap = false },
+        { "<C-p>", function() fzf.git_files() end, desc = "Find git files", nowait = false, remap = false },
         { "<C-r>", "<C-^>", desc = "Switch to alternate buffer", nowait = false, remap = false },
         { "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle Harpoon menu", nowait = false, remap = false },
-        { "<C-f>", function() builtin.buffers({ sort_mru = true, ignore_current_buffer = true }) end, desc = "Find buffers", nowait = false, remap = false },
+        { "<C-f>", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
 
         -- Copilot (Insert Mode)
         { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
@@ -158,7 +158,7 @@ function M.setup()
         { "K", function() vim.lsp.buf.hover() end, desc = "Hover documentation", nowait = false, remap = false },
         { "[d", function() vim.diagnostic.goto_next() end, desc = "Next diagnostic", nowait = false, remap = false },
         { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
-        { "gr", ":Telescope lsp_references<CR>", desc = "Go to references", nowait = false, remap = false },
+        { "gr", function() fzf.lsp_references() end, desc = "Go to references", nowait = false, remap = false },
 
         -- Tree navigation
         { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
