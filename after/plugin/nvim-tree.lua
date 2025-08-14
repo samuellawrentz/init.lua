@@ -1,33 +1,12 @@
--- examples for your init.lua
-
--- disable netrw at the very start of your init.lua (strongly advised)
+-- Disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- empty setup using defaults
-require("nvim-tree").setup()
-
 local api = require("nvim-tree.api")
-vim.keymap.set('n', '?', api.tree.toggle_help,
-    { desc = 'Help', buffer = bufnr, noremap = true, silent = true, nowait = true })
-vim.keymap.set('n', 'tf', api.tree.toggle,
-    { desc = 'Toggle the view of the tree', buffer = bufnr, noremap = true, silent = true, nowait = true })
-vim.keymap.set('n', 'tt', api.tree.focus,
-    { desc = 'Focus the tree', buffer = bufnr, noremap = true, silent = true, nowait = true })
+-- Nvim-tree keybindings have been moved to lua/config/whichkey.lua for better organization
 
-
-
--- Opens the tree when you start vim
-local function open_nvim_tree()
-    -- open the tree
-    require("nvim-tree.api").tree.open()
-end
--- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-local HEIGHT_RATIO = 0.8 -- You can change this
-local WIDTH_RATIO = 0.3  -- You can change this too
-
-
--- OR setup with some options
+local HEIGHT_RATIO = 0.8
+local WIDTH_RATIO = 0.3
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     sync_root_with_cwd = true,
@@ -35,14 +14,8 @@ require("nvim-tree").setup({
         group_empty = true,
         highlight_opened_files = 'icon',
         root_folder_label = false,
-        icons = {
-            show = {
-                folder_arrow = false
-            }
-        }
     },
     view = {
-        -- relativenumber = true,
         float = {
             enable = false,
             open_win_config = function()
@@ -66,11 +39,11 @@ require("nvim-tree").setup({
             end,
         },
         width = 40
-        -- width = function()
-        --     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-        -- end,
     },
     update_focused_file = {
         enable = true,
+    },
+    live_filter = {
+        always_show_folders = false
     }
 })

@@ -1,4 +1,5 @@
 require("samsden.set")
+require("samsden.lazy")
 
 vim.cmd([[
   augroup filetypedetect
