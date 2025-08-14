@@ -21,6 +21,15 @@ require('mason-lspconfig').setup({
     }
 })
 
+-- Ensure biome is installed via Mason
+require('mason-tool-installer').setup({
+    ensure_installed = {
+        'biome',  -- Biome linter/formatter
+    },
+    auto_update = false,
+    run_on_start = true,
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 

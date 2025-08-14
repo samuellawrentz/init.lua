@@ -61,6 +61,7 @@ require("lazy").setup({
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
       { "onsails/lspkind.nvim" },
 
       -- Autocompletion

@@ -1,3 +1,7 @@
+-- ESLint configuration - DISABLED in favor of Biome
+-- To re-enable, uncomment the code below and disable biome.lua
+
+--[[
 local lint = require("lint")
 
 lint.linters_by_ft = {
@@ -48,3 +52,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
   callback = eslint_fix,
 })
+--]]
