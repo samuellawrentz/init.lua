@@ -17,12 +17,12 @@ function M.setup()
 
         -- Utils/Tools
         { "<leader>z", group = "Utils", nowait = false, remap = false },
-        { "<leader>zS", "<cmd>PackerStatus<cr>", desc = "Packer Status", nowait = false, remap = false },
-        { "<leader>zc", "<cmd>PackerCompile<cr>", desc = "Packer Compile", nowait = false, remap = false },
-        { "<leader>zi", "<cmd>PackerInstall<cr>", desc = "Packer Install", nowait = false, remap = false },
+        { "<leader>zS", "<cmd>Lazy<cr>", desc = "Lazy Status", nowait = false, remap = false },
+        { "<leader>zc", "<cmd>Lazy clean<cr>", desc = "Lazy Clean", nowait = false, remap = false },
+        { "<leader>zi", "<cmd>Lazy install<cr>", desc = "Lazy Install", nowait = false, remap = false },
         { "<leader>zm", "<cmd>Mason<cr>", desc = "Open Mason", nowait = false, remap = false },
-        { "<leader>zs", "<cmd>PackerSync<cr>", desc = "Packer Sync", nowait = false, remap = false },
-        { "<leader>zu", "<cmd>PackerUpdate<cr>", desc = "Packer Update", nowait = false, remap = false },
+        { "<leader>zs", "<cmd>Lazy sync<cr>", desc = "Lazy Sync", nowait = false, remap = false },
+        { "<leader>zu", "<cmd>Lazy update<cr>", desc = "Lazy Update", nowait = false, remap = false },
         { "<leader>zr", "<cmd>:SessionRestore<CR>", desc = "Restore session", nowait = false, remap = false },
 
         -- File operations

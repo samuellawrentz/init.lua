@@ -8,6 +8,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 0
 vim.opt.splitright = true -- vertical split to the right, for github copilot panel C-c
+vim.opt.ignorecase = true -- ignore case in search patterns
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -45,3 +46,7 @@ vim.opt.updatetime = 50
 vim.api.nvim_set_keymap('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]],
     { noremap = true, silent = true })
 
+-- color scheme and backgrounds
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
