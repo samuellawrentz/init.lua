@@ -6,7 +6,7 @@ require('rose-pine').setup({
         italic = true,
     },
     highlight_groups = {
-        Comment = { fg = "foam" },
+        -- Comment = { fg = "foam" },
         StatusLine = { fg = "love", bg = "love", blend = 15 },
     },
 })
