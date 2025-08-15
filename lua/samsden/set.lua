@@ -4,6 +4,7 @@ vim.g.copilot_filetypes = {
     markdown = true,
     mdx = true
 }
+vim.o.winborder = 'rounded'
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 0
