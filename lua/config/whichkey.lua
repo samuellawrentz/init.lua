@@ -81,6 +81,7 @@ function M.setup()
 
         -- Misc leader mappings
         { "<leader>s", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
+        { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
         { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
 
         -- Navigation and movement

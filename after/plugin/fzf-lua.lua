@@ -6,10 +6,9 @@ require('fzf-lua').setup {
         col = 0.50,
         border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
         preview = {
-            layout = 'flex',
-            flip_columns = 120,
+            layout = 'vertical',
+            vertical = 'up:60%',
             default = 'bat',
-            horizontal = 'right:50%'
         },
     },
     keymap = {
