@@ -34,18 +34,16 @@ function M.setup()
         { "<leader>fj", function() snipe.open_buffer_menu() end, desc = "Snipe buffer menu", nowait = false, remap = false },
 
         -- LSP
-        { "<leader>v", group = "LSP", nowait = false, remap = false },
-        { "<leader>vws", function() fzf.lsp_live_workspace_symbols() end, desc = "Workspace symbols", nowait = false, remap = false },
-        { "<leader>vd", function() vim.diagnostic.open_float() end, desc = "Open diagnostic float", nowait = false, remap = false },
-        { "<leader>vca", function() vim.lsp.buf.code_action() end, desc = "Code actions", nowait = false, remap = false },
-        { "<leader>vrn", function() vim.lsp.buf.rename() end, desc = "Rename symbol", nowait = false, remap = false },
-
-        { "<leader>l", group = "LSP Extended", nowait = false, remap = false },
+        { "<leader>l", group = "LSP", nowait = false, remap = false },
+        { "<leader>lw", function() fzf.lsp_live_workspace_symbols() end, desc = "Workspace symbols", nowait = false, remap = false },
+        { "<leader>lk", function() vim.diagnostic.open_float() end, desc = "Open diagnostic float", nowait = false, remap = false },
         { "<leader>ld", function() fzf.diagnostics_document() end, desc = "Buffer diagnostics", nowait = false, remap = false },
         { "<leader>ls", function() fzf.lsp_document_symbols() end, desc = "Document symbols", nowait = false, remap = false },
         { "<leader>lt", function() fzf.lsp_typedefs() end, desc = "Type definitions", nowait = false, remap = false },
         { "<leader>lo", function() fzf.lsp_outgoing_calls() end, desc = "Outgoing calls", nowait = false, remap = false },
         { "<leader>li", function() fzf.lsp_incoming_calls() end, desc = "Incoming calls", nowait = false, remap = false },
+        { "<leader>lr", function() vim.lsp.buf.rename() end, desc = "Rename symbol", nowait = false, remap = false },
+        { "<leader>la", function() vim.lsp.buf.code_action() end, desc = "Code actions", nowait = false, remap = false },
         { "<leader>lx", function()
             local virtual_text = not vim.diagnostic.config().virtual_text
             vim.diagnostic.config({ virtual_text = virtual_text, underline = virtual_text })
@@ -131,7 +129,7 @@ function M.setup()
         { "<C-k>", "10k", desc = "Jump up 10 lines", nowait = false, remap = false },
         { "<C-d>", "<C-d>zz", desc = "Half page down (centered)", nowait = false, remap = false },
         { "<C-u>", "<C-u>zz", desc = "Half page up (centered)", nowait = false, remap = false },
-        { "<C-p>", function() fzf.git_files() end, desc = "Find git files", nowait = false, remap = false },
+        { "<C-p>", function() fzf.combine({ pickers = "buffers;git_files" })end, desc = "Find git files", nowait = false, remap = false },
         { "<C-r>", "<C-^>", desc = "Switch to alternate buffer", nowait = false, remap = false },
         { "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle Harpoon menu", nowait = false, remap = false },
         { "<C-f>", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
