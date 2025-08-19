@@ -137,11 +137,11 @@ function M.setup()
         { "<C-f>", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
 
         -- Copilot (Insert Mode)
-        { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
-        { "<C-d>", "<Plug>(copilot-next)", mode = "i", desc = "Next Copilot suggestion", nowait = false, remap = false },
-        { "<C-f>", "<Plug>(copilot-previous)", mode = "i", desc = "Previous Copilot suggestion", nowait = false, remap = false },
-        { "<C-v>", "<Plug>(copilot-accept-line)", mode = "i", desc = "Accept Copilot line", nowait = false, remap = false },
-        { "<C-c>", "<Cmd>Copilot<CR>", mode = "i", desc = "Open Copilot", nowait = false, remap = false },
+        -- { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
+        -- { "<C-d>", "<Plug>(copilot-next)", mode = "i", desc = "Next Copilot suggestion", nowait = false, remap = false },
+        -- { "<C-f>", "<Plug>(copilot-previous)", mode = "i", desc = "Previous Copilot suggestion", nowait = false, remap = false },
+        -- { "<C-v>", "<Plug>(copilot-accept-line)", mode = "i", desc = "Accept Copilot line", nowait = false, remap = false },
+        -- { "<C-c>", "<Cmd>Copilot<CR>", mode = "i", desc = "Open Copilot", nowait = false, remap = false },
 
         -- Arrow keys for resizing
         { "<Left>", ":vertical resize +1<CR>", desc = "Increase window width", nowait = false, remap = false },

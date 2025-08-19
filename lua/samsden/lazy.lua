@@ -233,11 +233,18 @@ require("lazy").setup({
     event = { "BufReadPre", "BufNewFile" },
   },
 
-  -- GitHub Copilot
-  {
-    "github/copilot.vim",
-    event = "InsertEnter",
-  },
+  -- Copilot
+{
+  "supermaven-inc/supermaven-nvim",
+  config = function()
+    require("supermaven-nvim").setup({
+        keymaps = {
+            -- Accept word
+            accept_word ="<c-g>"
+        }
+    })
+  end,
+},
 }, {
   -- Lazy.nvim configuration
   ui = {
