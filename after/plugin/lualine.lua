@@ -12,14 +12,17 @@ local config = {
     winbar = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {},
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
     },
     tabline = {
         lualine_z = { { 'mode', } },
-        lualine_y = { 'branch', 'diff',
+        lualine_y = {{'session', fmt=
+          function()
+            return require("auto-session.lib").current_session_name(true)
+          end,
+        },  'branch', 'diff',
             { 'diagnostics', sources = { 'nvim_lsp' } } },
         lualine_b = {{ 'filename', path=1 }},
         lualine_c = {'lsp_progress'},

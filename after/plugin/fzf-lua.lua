@@ -11,26 +11,6 @@ require('fzf-lua').setup {
             default = 'bat',
         },
     },
-    keymap = {
-        builtin = {
-            ["<F1>"] = "toggle-help",
-            ["<F2>"] = "toggle-fullscreen",
-            ["<F3>"] = "toggle-preview-wrap",
-            ["<F4>"] = "toggle-preview",
-            ["<C-d>"] = "preview-page-down",
-            ["<C-u>"] = "preview-page-up",
-        },
-        fzf = {
-            ["ctrl-z"] = "abort",
-            ["ctrl-u"] = "unix-line-discard",
-            ["ctrl-f"] = "half-page-down",
-            ["ctrl-b"] = "half-page-up",
-            ["ctrl-a"] = "beginning-of-line",
-            ["ctrl-e"] = "end-of-line",
-            ["alt-a"] = "select-all",
-            ["alt-d"] = "deselect-all",
-        },
-    },
     previewers = {
         bat = {
             cmd = "bat",

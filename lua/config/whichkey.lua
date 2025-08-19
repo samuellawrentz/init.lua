@@ -21,7 +21,7 @@ function M.setup()
         { "<leader>zc", "<cmd>Lazy clean<cr>", desc = "Lazy Clean", nowait = false, remap = false },
         { "<leader>zi", "<cmd>Lazy install<cr>", desc = "Lazy Install", nowait = false, remap = false },
         { "<leader>zm", "<cmd>Mason<cr>", desc = "Open Mason", nowait = false, remap = false },
-        { "<leader>zs", "<cmd>Lazy sync<cr>", desc = "Lazy Sync", nowait = false, remap = false },
+        { "<leader>zs", "<cmd>SessionSearch<cr>", desc = "Session Search", nowait = false, remap = false },
         { "<leader>zu", "<cmd>Lazy update<cr>", desc = "Lazy Update", nowait = false, remap = false },
         { "<leader>zr", "<cmd>:SessionRestore<CR>", desc = "Restore session", nowait = false, remap = false },
 
@@ -80,7 +80,8 @@ function M.setup()
         { "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
 
         -- Misc leader mappings
-        { "<leader>s", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
+        { "<leader>so", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
+        { "<c-t>", "<cmd>SessionSearch<cr>", desc = "Session search", nowait = false, remap = false },
         { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
         { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
 
