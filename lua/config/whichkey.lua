@@ -162,8 +162,7 @@ function M.setup()
 
         -- Tree navigation
         { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
-        { "tf", api.tree.toggle, desc = "Toggle nvim-tree", nowait = false, remap = false },
-        { "tt", api.tree.focus, desc = "Focus nvim-tree", nowait = false, remap = false },
+        { "tt", api.tree.toggle, desc = "Toggle nvim-tree float", nowait = false, remap = false },
 
         -- Folding
         { "zR", require('ufo').openAllFolds, desc = "Open all folds", nowait = false, remap = false },

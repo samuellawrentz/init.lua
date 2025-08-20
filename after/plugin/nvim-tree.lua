@@ -6,10 +6,14 @@ local api = require("nvim-tree.api")
 -- Nvim-tree keybindings have been moved to lua/config/whichkey.lua for better organization
 
 local HEIGHT_RATIO = 0.8
-local WIDTH_RATIO = 0.3
+local WIDTH_RATIO = 0.5
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     sync_root_with_cwd = true,
+    on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+        vim.keymap.set("n", "<Esc>", api.tree.close, { buffer = bufnr, desc = "Close nvim-tree float" })
+    end,
     renderer = {
         group_empty = true,
         highlight_opened_files = 'icon',
@@ -17,7 +21,7 @@ require("nvim-tree").setup({
     },
     view = {
         float = {
-            enable = false,
+            enable = true,
             open_win_config = function()
                 local screen_w = vim.opt.columns:get()
                 local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -28,6 +32,7 @@ require("nvim-tree").setup({
                 local center_x = (screen_w - window_w) / 2
                 local center_y = ((vim.opt.lines:get() - window_h) / 2)
                     - vim.opt.cmdheight:get()
+                local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
                 return {
                     border = "rounded",
                     relative = "editor",
@@ -35,6 +40,8 @@ require("nvim-tree").setup({
                     col = center_x,
                     width = window_w_int,
                     height = window_h_int,
+                    title = " " .. cwd .. " ",
+                    title_pos = "center",
                 }
             end,
         },
