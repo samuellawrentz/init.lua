@@ -12,7 +12,16 @@ require("nvim-tree").setup({
     sync_root_with_cwd = true,
     on_attach = function(bufnr)
         local api = require("nvim-tree.api")
-        vim.keymap.set("n", "<Esc>", api.tree.close, { buffer = bufnr, desc = "Close nvim-tree float" })
+        
+        local function opts(desc)
+            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+        
+        -- Default mappings
+        api.config.mappings.default_on_attach(bufnr)
+        
+        -- Custom mappings
+        vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"))
     end,
     renderer = {
         group_empty = true,

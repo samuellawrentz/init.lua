@@ -13,7 +13,7 @@ function M.setup()
         { "<leader>bD", "<Cmd>%bd|e#|bd#<Cr>", desc = "Delete all buffers", nowait = false, remap = false },
         { "<leader>bc", "<Cmd>bd!<Cr>", desc = "Close current buffer", nowait = false, remap = false },
         { "<leader>bt", ":BufferTabsToggle<CR>", desc = "Toggle buffer tabs", nowait = false, remap = false },
-        { "<leader>qa", "<cmd>qa!<CR>", desc = "Quit", nowait = false, remap = false },
+        { "<leader>q", "<cmd>qa!<CR>", desc = "Quit", nowait = false, remap = false },
 
         -- Utils/Tools
         { "<leader>z", group = "Utils", nowait = false, remap = false },
