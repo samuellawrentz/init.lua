@@ -154,7 +154,7 @@ function M.setup()
         { "<esc>", [[<C-\><C-n>]], mode = "t", desc = "Exit terminal mode", nowait = false, remap = false },
 
         -- LSP specific (buffer local)
-        { "gd", function() vim.lsp.buf.definition() end, desc = "Go to definition", nowait = false, remap = false },
+        { "gd", function() fzf.lsp_definitions() end, desc = "Go to definition", nowait = false, remap = false },
         { "K",  function()  vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 } end, desc = "Hover documentation", nowait = false, remap = false },
         { "[d", function() vim.diagnostic.goto_next() end, desc = "Next diagnostic", nowait = false, remap = false },
         { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
