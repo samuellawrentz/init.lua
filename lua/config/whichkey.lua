@@ -55,9 +55,9 @@ function M.setup()
         { "<leader>ac", ":NeoAIContext<CR>", desc = "NeoAI Context", mode = { "n", "x" }, nowait = false, remap = false },
 
         -- GitHub
-        { "<leader>o", group = "Open in GitHub", nowait = false, remap = false },
-        { "<leader>or", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub", nowait = false, remap = false },
-        { "<leader>of", ":OpenInGHFile <CR>", desc = "Open file in GitHub", mode = { "n", "v" }, nowait = false, remap = false },
+        { "<leader>g", group = "Open in GitHub", nowait = false, remap = false },
+        { "<leader>gr", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub", nowait = false, remap = false },
+        { "<leader>gf", ":OpenInGHFile <CR>", desc = "Open file in GitHub", mode = { "n", "v" }, nowait = false, remap = false },
 
         -- Harpoon
         { "<leader>1", function() harpoon:list():select(1) end, desc = "Harpoon file 1", nowait = false, remap = false },
@@ -81,6 +81,7 @@ function M.setup()
 
         -- Misc leader mappings
         { "<leader>so", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
+        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline", nowait = false, remap = false },
         { "<c-t>", "<cmd>SessionSearch<cr>", desc = "Session search", nowait = false, remap = false },
         { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
         { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },

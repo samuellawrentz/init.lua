@@ -113,6 +113,16 @@ require("lazy").setup({
     end,
   },
 
+-- Outline symbols
+    {
+      "hedyhli/outline.nvim",
+      lazy = true,
+      cmd = { "Outline", "OutlineOpen" },
+      keys = { -- Example mapping to toggle outline
+        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+      },
+    },
+
   -- GitHub Integration
   {
     "pwntester/octo.nvim",
