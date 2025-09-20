@@ -81,7 +81,13 @@ function M.setup()
 
         -- Misc leader mappings
         { "<leader>so", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
-        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline", nowait = false, remap = false },
+
+        -- Outline and Opencode
+        { "<leader>o", group = "Outline/Opencode", nowait = false, remap = false },
+        { "<leader>oo", "<cmd>Outline<CR>", desc = "Toggle outline", nowait = false, remap = false },
+        { "<leader>oc", "<cmd>OpencodeSend<cr>", desc = "Send prompt to opencode", mode = { "n", "v" }, nowait = false, remap = false },
+        { "<leader>ot", "<cmd>OpencodeSwitchMode<cr>", desc = "Toggle opencode mode", nowait = false, remap = false },
+        { "<leader>op", "<cmd>OpencodePrompt<cr>", desc = "Open opencode persistent prompt", nowait = false, remap = false },
         { "<c-t>", "<cmd>SessionSearch<cr>", desc = "Session search", nowait = false, remap = false },
         { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
         { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
@@ -160,6 +166,7 @@ function M.setup()
         { "[d", function() vim.diagnostic.goto_next() end, desc = "Next diagnostic", nowait = false, remap = false },
         { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
         { "gr", function() fzf.lsp_references() end, desc = "Go to references", nowait = false, remap = false },
+        { "gi", function() fzf.lsp_implementations() end, desc = "Go to implementations", nowait = false, remap = false },
 
         -- Tree navigation
         { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
