@@ -86,6 +86,7 @@ function M.setup()
         -- Misc leader mappings
         { "<leader>so", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
         { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline", nowait = false, remap = false },
+        { "<leader>r", ":%s/", desc = "Find and replace", nowait = false, remap = false },
         { "<c-t>", "<cmd>SessionSearch<cr>", desc = "Session search", nowait = false, remap = false },
         { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
         { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
