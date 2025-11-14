@@ -48,6 +48,10 @@ function M.setup()
             local virtual_text = not vim.diagnostic.config().virtual_text
             vim.diagnostic.config({ virtual_text = virtual_text, underline = virtual_text })
         end, desc = "Toggle diagnostic virtual text", nowait = false, remap = false },
+        { "<leader>lf", function()
+            vim.cmd('!git diff --name-only HEAD | xargs -I {} biome lint {} --fix --unsafe')
+            vim.cmd('edit!')
+        end, desc = "Biome lint all changed files", nowait = false, remap = false },
 
         -- AI
         { "<leader>a", group = "AI", nowait = false, remap = false },
@@ -160,6 +164,8 @@ function M.setup()
         { "[d", function() vim.diagnostic.goto_next() end, desc = "Next diagnostic", nowait = false, remap = false },
         { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
         { "gr", function() fzf.lsp_references() end, desc = "Go to references", nowait = false, remap = false },
+        { "gi", function() fzf.lsp_implementations() end, desc = "Go to implementations", nowait = false, remap = false },
+
 
         -- Tree navigation
         { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
