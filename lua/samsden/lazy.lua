@@ -255,6 +255,22 @@ require("lazy").setup({
     })
   end,
 },
+
+  -- OpenCode
+  {
+    "NickvanDyke/opencode.nvim",
+    keys = {
+      { "<leader>c", mode = { "n", "v" }, desc = "OpenCode" },
+    },
+    config = function()
+      vim.g.opencode_opts = {
+        provider = {
+          enabled = "tmux",
+        }
+      }
+      vim.o.autoread = true
+    end,
+  },
 }, {
   -- Lazy.nvim configuration
   ui = {

@@ -58,6 +58,12 @@ function M.setup()
         { "<leader>ai", ":NeoAI<CR>", desc = "NeoAI", mode = { "n", "x" }, nowait = false, remap = false },
         { "<leader>ac", ":NeoAIContext<CR>", desc = "NeoAI Context", mode = { "n", "x" }, nowait = false, remap = false },
 
+        -- OpenCode
+        { "<leader>c", group = "OpenCode", nowait = false, remap = false },
+        { "<leader>cc", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask OpenCode", mode = { "n", "v" }, nowait = false, remap = false },
+        { "<leader>cs", function() require("opencode").select() end, desc = "Select OpenCode action", nowait = false, remap = false },
+        { "<leader>ct", function() require("opencode").toggle() end, desc = "Toggle OpenCode pane", nowait = false, remap = false },
+
         -- GitHub
         { "<leader>g", group = "Open in GitHub", nowait = false, remap = false },
         { "<leader>gr", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub", nowait = false, remap = false },
