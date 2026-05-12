@@ -42,13 +42,17 @@ require("lazy").setup({
     },
   },
 
-  -- Colorscheme
+  -- Colorschemes (all loaded eagerly so picker can switch instantly)
+  { "rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000 },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+  { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme rose-pine")
+      require("samsden.theme").apply()
+      vim.keymap.set("n", "<leader>tt", function() require("samsden.theme").pick() end, { desc = "Theme picker" })
     end,
   },
 
@@ -141,6 +145,36 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup({
+        on_attach = function(buf)
+          local gs = require("gitsigns")
+          local map = function(lhs, rhs, desc)
+            vim.keymap.set("n", lhs, rhs, { buffer = buf, desc = desc })
+          end
+          map("]c", function() gs.nav_hunk("next") end, "Next hunk")
+          map("[c", function() gs.nav_hunk("prev") end, "Prev hunk")
+          map("<leader>hp", gs.preview_hunk, "Preview hunk")
+          map("<leader>hb", function() gs.blame_line({ full = true }) end, "Blame line")
+          map("<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
+          map("<leader>hr", gs.reset_hunk, "Reset hunk")
+          map("<leader>dd", gs.diffthis, "Diff file vs HEAD")
+          map("<leader>dD", function() gs.diffthis("~1") end, "Diff file vs HEAD~1")
+        end,
+      })
+    end,
+  },
+
+  -- Diffview (auto-infers repo from current buffer — works in multi-repo workspaces)
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory", "DiffviewToggleFiles" },
+    keys = {
+      { "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "Diff: open repo view" },
+      { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diff: file history" },
+      { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Diff: close" },
+      { "<leader>dw", function() require("samsden.workspace-diff").pick() end, desc = "Diff: workspace (all repos)" },
+    },
   },
 
   -- Commentary
@@ -162,18 +196,9 @@ require("lazy").setup({
   -- Minimap
   { "gorbit99/codewindow.nvim", cmd = { "Minimap", "MinimapToggle" } },
 
-  -- Session Management
-  {
-    'cameronr/auto-session',
-    branch = 'feature/fzf-lua-picker',
-    lazy = false,
-  },
 
   -- Icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
-
-  -- Time Tracking
-  { "wakatime/vim-wakatime", event = "VeryLazy" },
 
   -- Autopairs
   {
@@ -253,6 +278,7 @@ require("lazy").setup({
             accept_word ="<c-g>"
         }
     })
+    vim.cmd("SupermavenUseFree")
   end,
 },
 }, {

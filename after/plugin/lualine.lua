@@ -18,11 +18,7 @@ local config = {
     },
     tabline = {
         lualine_z = { { 'mode', } },
-        lualine_y = {{'session', fmt=
-          function()
-            return require("auto-session.lib").current_session_name(true)
-          end,
-        },  'branch', 'diff',
+        lualine_y = {'branch', 'diff',
             { 'diagnostics', sources = { 'nvim_lsp' } } },
         lualine_b = {{ 'filename', path=1 }},
         lualine_c = {'lsp_progress'},

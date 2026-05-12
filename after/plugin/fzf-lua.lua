@@ -5,6 +5,7 @@ require('fzf-lua').setup {
         row = 0.35,
         col = 0.50,
         border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+        treesitter = false,
         preview = {
             layout = 'vertical',
             vertical = 'up:60%',

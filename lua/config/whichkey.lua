@@ -175,6 +175,11 @@ function M.setup()
         -- Folding
         { "zR", require('ufo').openAllFolds, desc = "Open all folds", nowait = false, remap = false },
         { "zM", require('ufo').closeAllFolds, desc = "Close all folds", nowait = false, remap = false },
+
+        -- Theme / Diff / Hunks (groups for which-key popup)
+        { "<leader>t", group = "Theme" },
+        { "<leader>d", group = "Diff" },
+        { "<leader>h", group = "Hunks" },
     }
     wk.add(mappings)
 end
