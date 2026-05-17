@@ -6,6 +6,10 @@ function M.setup()
     local fzf = require('fzf-lua')
     local api = require("nvim-tree.api")
     local snipe = require("snipe")
+    local function file_picker()
+        vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+        return vim.v.shell_error == 0 and "git_files" or "files"
+    end
 
     local mappings = {
         -- Buffer management
@@ -137,7 +141,7 @@ function M.setup()
         { "<C-k>", "10k", desc = "Jump up 10 lines", nowait = false, remap = false },
         { "<C-d>", "<C-d>zz", desc = "Half page down (centered)", nowait = false, remap = false },
         { "<C-u>", "<C-u>zz", desc = "Half page up (centered)", nowait = false, remap = false },
-        { "<C-p>", function() fzf.combine({ pickers = "buffers;git_files" })end, desc = "Find git files", nowait = false, remap = false },
+        { "<C-p>", function() fzf.combine({ pickers = "buffers;" .. file_picker() })end, desc = "Find files", nowait = false, remap = false },
         { "<C-r>", "<C-^>", desc = "Switch to alternate buffer", nowait = false, remap = false },
         { "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle Harpoon menu", nowait = false, remap = false },
         { "<C-f>", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },

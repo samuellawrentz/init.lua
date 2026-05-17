@@ -271,6 +271,8 @@ require("lazy").setup({
   -- Copilot
 {
   "supermaven-inc/supermaven-nvim",
+  event = "InsertEnter",
+  cmd = { "SupermavenUseFree", "SupermavenUsePro" },
   config = function()
     require("supermaven-nvim").setup({
         keymaps = {
@@ -278,7 +280,6 @@ require("lazy").setup({
             accept_word ="<c-g>"
         }
     })
-    vim.cmd("SupermavenUseFree")
   end,
 },
 }, {
