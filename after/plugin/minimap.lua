@@ -1,4 +1,7 @@
-local codewindow = require('codewindow')
+-- codewindow is archived and depends on nvim-treesitter.ts_utils (removed on the
+-- main branch), so it currently fails to load — guard so startup survives.
+local ok, codewindow = pcall(require, 'codewindow')
+if not ok then return end
 codewindow.setup({
     minimap_width = 10, -- The width of the text part of the minimap
     screen_bounds = 'background', -- How the visible area is displayed, "lines": lines above and below, "background": background color

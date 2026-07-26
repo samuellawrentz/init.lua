@@ -102,17 +102,25 @@ require("lazy").setup({
     event = "VeryLazy",
   },
 
-  -- Treesitter
+  -- Treesitter (main branch: highlight/indent are started per-buffer, no configs module)
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "query", "javascript", "typescript", "html", "css" },
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
+      require("nvim-treesitter").install({
+        "lua", "vim", "vimdoc", "query", "javascript", "typescript", "tsx",
+        "html", "css", "json", "yaml", "toml", "markdown", "markdown_inline",
+        "go", "fish", "php",
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("samsden-treesitter", { clear = true }),
+        callback = function(ev)
+          if pcall(vim.treesitter.start, ev.buf) then
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
       })
     end,
   },
@@ -214,6 +222,9 @@ require("lazy").setup({
     "windwp/nvim-ts-autotag",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup({})
+    end,
   },
 
   -- Zen Mode
