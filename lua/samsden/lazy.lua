@@ -329,21 +329,29 @@ require("lazy").setup({
     config = function()
       local d = require("alpha.themes.dashboard")
       d.section.header.val = {
-        "██╗     ███████╗ ██████╗ ",
-        "██║     ██╔════╝██╔═══██╗",
-        "██║     █████╗  ██║   ██║",
-        "██║     ██╔══╝  ██║   ██║",
-        "███████╗███████╗╚██████╔╝",
-        "╚══════╝╚══════╝ ╚═════╝ ",
+        "██       ███████   ██████  ",
+        "██       ██       ██    ██ ",
+        "██       █████    ██    ██ ",
+        "██       ██       ██    ██ ",
+        "███████  ███████   ██████  ",
       }
+      d.section.header.opts.hl = "@keyword"
       d.section.buttons.val = {
-        d.button("p", "  find file", "<cmd>FzfLua files<cr>"),
-        d.button("f", "  live grep", "<cmd>FzfLua live_grep<cr>"),
-        d.button("r", "  recent", "<cmd>FzfLua oldfiles<cr>"),
-        d.button("e", "  explorer", "<cmd>NvimTreeToggle<cr>"),
+        d.button("p", "󰈞  find file", "<cmd>FzfLua files<cr>"),
+        d.button("f", "󰍉  live grep", "<cmd>FzfLua live_grep<cr>"),
+        d.button("r", "󰋚  recent (cwd)", "<cmd>FzfLua oldfiles cwd_only=true<cr>"),
+        d.button("e", "󰉋  explorer", "<cmd>NvimTreeToggle<cr>"),
         d.button("l", "󰒲  lazy", "<cmd>Lazy<cr>"),
-        d.button("q", "  quit", "<cmd>qa<cr>"),
+        d.button("q", "󰅚  quit", "<cmd>qa<cr>"),
       }
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          local st = require("lazy").stats()
+          d.section.footer.val = string.format("󱐋 %d/%d plugins in %dms", st.loaded, st.count, math.floor(st.startuptime))
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
 
       -- cwd contents, most recently modified first
       local function recent_entries()
@@ -358,7 +366,7 @@ require("lazy").setup({
         local buttons, now = {}, os.time()
         for i, it in ipairs(items) do
           if i > 9 then break end
-          local icon = it.dir and "" or (require("nvim-web-devicons").get_icon(it.name, nil, { default = true }))
+          local icon = it.dir and "󰉋" or (require("nvim-web-devicons").get_icon(it.name, nil, { default = true }))
           local age = now - it.mtime
           local ago = age < 3600 and math.floor(age / 60) .. "m" or age < 86400 and math.floor(age / 3600) .. "h" or math.floor(age / 86400) .. "d"
           local label = string.format("%s  %-32s %4s", icon, it.name .. (it.dir and "/" or ""), ago)
@@ -369,7 +377,7 @@ require("lazy").setup({
       local recent = {
         type = "group",
         val = {
-          { type = "text", val = "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~"), opts = { hl = "SpecialComment", position = "center" } },
+          { type = "text", val = "󰉋  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~"), opts = { hl = "SpecialComment", position = "center" } },
           { type = "padding", val = 1 },
           { type = "group", val = recent_entries },
         },
