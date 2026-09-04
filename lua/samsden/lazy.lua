@@ -321,6 +321,74 @@ require("lazy").setup({
     },
   },
 
+  {
+    "goolord/alpha-nvim",
+    lazy = false, -- alpha opens itself on VimEnter; must be set up before that fires
+    cond = function() return vim.fn.argc() == 0 end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      local d = require("alpha.themes.dashboard")
+      d.section.header.val = {
+        "██╗     ███████╗ ██████╗ ",
+        "██║     ██╔════╝██╔═══██╗",
+        "██║     █████╗  ██║   ██║",
+        "██║     ██╔══╝  ██║   ██║",
+        "███████╗███████╗╚██████╔╝",
+        "╚══════╝╚══════╝ ╚═════╝ ",
+      }
+      d.section.buttons.val = {
+        d.button("p", "  find file", "<cmd>FzfLua files<cr>"),
+        d.button("f", "  live grep", "<cmd>FzfLua live_grep<cr>"),
+        d.button("r", "  recent", "<cmd>FzfLua oldfiles<cr>"),
+        d.button("e", "  explorer", "<cmd>NvimTreeToggle<cr>"),
+        d.button("l", "󰒲  lazy", "<cmd>Lazy<cr>"),
+        d.button("q", "  quit", "<cmd>qa<cr>"),
+      }
+
+      -- cwd contents, most recently modified first
+      local function recent_entries()
+        local items = {}
+        for name, kind in vim.fs.dir(".") do
+          if name:sub(1, 1) ~= "." then
+            local st = vim.uv.fs_stat(name)
+            if st then table.insert(items, { name = name, dir = kind == "directory", mtime = st.mtime.sec }) end
+          end
+        end
+        table.sort(items, function(a, b) return a.mtime > b.mtime end)
+        local buttons, now = {}, os.time()
+        for i, it in ipairs(items) do
+          if i > 9 then break end
+          local icon = it.dir and "" or (require("nvim-web-devicons").get_icon(it.name, nil, { default = true }))
+          local age = now - it.mtime
+          local ago = age < 3600 and math.floor(age / 60) .. "m" or age < 86400 and math.floor(age / 3600) .. "h" or math.floor(age / 86400) .. "d"
+          local label = string.format("%s  %-32s %4s", icon, it.name .. (it.dir and "/" or ""), ago)
+          table.insert(buttons, d.button(tostring(i), label, "<cmd>edit " .. vim.fn.fnameescape(it.name) .. "<cr>"))
+        end
+        return buttons
+      end
+      local recent = {
+        type = "group",
+        val = {
+          { type = "text", val = "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~"), opts = { hl = "SpecialComment", position = "center" } },
+          { type = "padding", val = 1 },
+          { type = "group", val = recent_entries },
+        },
+      }
+
+      d.config.layout = {
+        { type = "padding", val = 2 },
+        d.section.header,
+        { type = "padding", val = 2 },
+        d.section.buttons,
+        { type = "padding", val = 1 },
+        recent,
+        { type = "padding", val = 1 },
+        d.section.footer,
+      }
+      require("alpha").setup(d.config)
+    end,
+  },
+
   { "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
   { "cameronr/hbac.nvim", event = "VeryLazy", opts = { threshold = 25 } },
   { "leath-dub/snipe.nvim", lazy = true, opts = {} },
