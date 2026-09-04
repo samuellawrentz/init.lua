@@ -1,77 +1,81 @@
 local M = {}
 
-function M.setup()
-    local wk = require("which-key")
-    local harpoon = require("harpoon")
-    local fzf = require('fzf-lua')
-    local api = require("nvim-tree.api")
-    local snipe = require("snipe")
-    local function file_picker()
-        vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
-        return vim.v.shell_error == 0 and "git_files" or "files"
-    end
+-- Plugins are required inside callbacks so lazy.nvim loads them on first use.
+local function fzf(fn, ...)
+    local args = { ... }
+    return function() require("fzf-lua")[fn](unpack(args)) end
+end
 
-    local mappings = {
+local function file_picker()
+    vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+    return vim.v.shell_error == 0 and "git_files" or "files"
+end
+
+function M.setup()
+    require("which-key").add({
         -- Buffer management
-        { "<leader>b", group = "Buffer", nowait = false, remap = false },
-        { "<leader>bD", "<Cmd>%bd|e#|bd#<Cr>", desc = "Delete all buffers", nowait = false, remap = false },
-        { "<leader>bc", "<Cmd>bd!<Cr>", desc = "Close current buffer", nowait = false, remap = false },
-        { "<leader>bt", ":BufferTabsToggle<CR>", desc = "Toggle buffer tabs", nowait = false, remap = false },
-        { "<leader>q", "<cmd>qa!<CR>", desc = "Quit", nowait = false, remap = false },
+        { "<leader>b", group = "Buffer" },
+        { "<leader>bD", "<Cmd>%bd|e#|bd#<Cr>", desc = "Delete all buffers" },
+        { "<leader>bc", "<Cmd>bd!<Cr>", desc = "Close current buffer" },
+        { "<leader>q", "<cmd>qa!<CR>", desc = "Quit" },
 
         -- Utils/Tools
-        { "<leader>z", group = "Utils", nowait = false, remap = false },
-        { "<leader>zS", "<cmd>Lazy<cr>", desc = "Lazy Status", nowait = false, remap = false },
-        { "<leader>zc", "<cmd>Lazy clean<cr>", desc = "Lazy Clean", nowait = false, remap = false },
-        { "<leader>zi", "<cmd>Lazy install<cr>", desc = "Lazy Install", nowait = false, remap = false },
-        { "<leader>zm", "<cmd>Mason<cr>", desc = "Open Mason", nowait = false, remap = false },
-        { "<leader>zs", "<cmd>SessionSearch<cr>", desc = "Session Search", nowait = false, remap = false },
-        { "<leader>zu", "<cmd>Lazy update<cr>", desc = "Lazy Update", nowait = false, remap = false },
-        { "<leader>zr", "<cmd>:SessionRestore<CR>", desc = "Restore session", nowait = false, remap = false },
+        { "<leader>z", group = "Utils" },
+        { "<leader>zS", "<cmd>Lazy<cr>", desc = "Lazy Status" },
+        { "<leader>zc", "<cmd>Lazy clean<cr>", desc = "Lazy Clean" },
+        { "<leader>zi", "<cmd>Lazy install<cr>", desc = "Lazy Install" },
+        { "<leader>zu", "<cmd>Lazy update<cr>", desc = "Lazy Update" },
+        { "<leader>zm", "<cmd>Mason<cr>", desc = "Open Mason" },
+        { "<leader>zz", function() require("zen-mode").toggle({ window = { width = .85 } }) end, desc = "Zen mode" },
 
-        -- File operations
-        { "<leader>f", group = "Find/Files", nowait = false, remap = false },
-        { "<leader>ff", function() fzf.live_grep() end, desc = "Live grep", nowait = false, remap = false },
-        { "<leader>fg", function() fzf.grep_cword() end, desc = "Grep word under cursor", nowait = false, remap = false },
-        { "<leader>fb", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
-        { "<leader>fG", function() fzf.resume() end, desc = "Resume last search", nowait = false, remap = false },
-        { "<leader>fj", function() snipe.open_buffer_menu() end, desc = "Snipe buffer menu", nowait = false, remap = false },
+        -- Find/Files
+        { "<leader>f", group = "Find/Files" },
+        { "<leader>ff", fzf("live_grep"), desc = "Live grep" },
+        { "<leader>fg", fzf("grep_cword"), desc = "Grep word under cursor" },
+        { "<leader>fb", fzf("buffers"), desc = "Find buffers" },
+        { "<leader>fG", fzf("resume"), desc = "Resume last search" },
+        { "<leader>fh", fzf("help_tags"), desc = "Help tags" },
+        { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
+        { "tt", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
+        { "gb", function() require("snipe").open_buffer_menu() end, desc = "Snipe buffer menu" },
+        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
 
         -- LSP
-        { "<leader>l", group = "LSP", nowait = false, remap = false },
-        { "<leader>lw", function() fzf.lsp_live_workspace_symbols() end, desc = "Workspace symbols", nowait = false, remap = false },
-        { "<leader>lk", function() vim.diagnostic.open_float() end, desc = "Open diagnostic float", nowait = false, remap = false },
-        { "<leader>ld", function() fzf.diagnostics_document() end, desc = "Buffer diagnostics", nowait = false, remap = false },
-        { "<leader>ls", function() fzf.lsp_document_symbols() end, desc = "Document symbols", nowait = false, remap = false },
-        { "<leader>lt", function() fzf.lsp_typedefs() end, desc = "Type definitions", nowait = false, remap = false },
-        { "<leader>lo", function() fzf.lsp_outgoing_calls() end, desc = "Outgoing calls", nowait = false, remap = false },
-        { "<leader>li", function() fzf.lsp_incoming_calls() end, desc = "Incoming calls", nowait = false, remap = false },
-        { "<leader>lr", function() vim.lsp.buf.rename() end, desc = "Rename symbol", nowait = false, remap = false },
-        { "<leader>la", function() vim.lsp.buf.code_action() end, desc = "Code actions", nowait = false, remap = false },
+        { "<leader>l", group = "LSP" },
+        { "<leader>lw", fzf("lsp_live_workspace_symbols"), desc = "Workspace symbols" },
+        { "<leader>lk", vim.diagnostic.open_float, desc = "Open diagnostic float" },
+        { "<leader>ld", fzf("diagnostics_document"), desc = "Buffer diagnostics" },
+        { "<leader>ls", fzf("lsp_document_symbols"), desc = "Document symbols" },
+        { "<leader>lt", fzf("lsp_typedefs"), desc = "Type definitions" },
+        { "<leader>lo", fzf("lsp_outgoing_calls"), desc = "Outgoing calls" },
+        { "<leader>li", fzf("lsp_incoming_calls"), desc = "Incoming calls" },
+        { "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
+        { "<leader>la", vim.lsp.buf.code_action, desc = "Code actions" },
         { "<leader>lx", function()
-            local virtual_text = not vim.diagnostic.config().virtual_text
-            vim.diagnostic.config({ virtual_text = virtual_text, underline = virtual_text })
-        end, desc = "Toggle diagnostic virtual text", nowait = false, remap = false },
+            local on = not vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_text = on, underline = on })
+        end, desc = "Toggle diagnostic virtual text" },
         { "<leader>lf", function()
             vim.cmd('!git diff --name-only HEAD | xargs -I {} biome lint {} --fix --unsafe')
             vim.cmd('edit!')
-        end, desc = "Biome lint all changed files", nowait = false, remap = false },
-
-        -- AI
-        { "<leader>a", group = "AI", nowait = false, remap = false },
-        { "<leader>ai", ":NeoAI<CR>", desc = "NeoAI", mode = { "n", "x" }, nowait = false, remap = false },
-        { "<leader>ac", ":NeoAIContext<CR>", desc = "NeoAI Context", mode = { "n", "x" }, nowait = false, remap = false },
+        end, desc = "Biome lint all changed files" },
+        { "gd", fzf("lsp_definitions"), desc = "Go to definition" },
+        { "gr", fzf("lsp_references"), desc = "Go to references" },
+        { "gi", fzf("lsp_implementations"), desc = "Go to implementations" },
+        { "K", function() vim.lsp.buf.hover({ border = "single", max_height = 25, max_width = 120 }) end, desc = "Hover documentation" },
 
         -- GitHub
-        { "<leader>g", group = "Open in GitHub", nowait = false, remap = false },
-        { "<leader>gr", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub", nowait = false, remap = false },
-        { "<leader>gf", ":OpenInGHFile <CR>", desc = "Open file in GitHub", mode = { "n", "v" }, nowait = false, remap = false },
+        { "<leader>g", group = "Open in GitHub" },
+        { "<leader>gr", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub" },
+        { "<leader>gf", ":OpenInGHFile <CR>", desc = "Open file in GitHub", mode = { "n", "v" } },
 
         -- Harpoon
-        { "<leader>1", function() harpoon:list():select(1) end, desc = "Harpoon file 1", nowait = false, remap = false },
-        { "<leader>2", function() harpoon:list():select(2) end, desc = "Harpoon file 2", nowait = false, remap = false },
-        { "<leader>3", function() harpoon:list():select(3) end, desc = "Harpoon file 3", nowait = false, remap = false },
-        { "<leader>4", function() harpoon:list():select(4) end, desc = "Harpoon file 4", nowait = false, remap = false },
+        { "<leader>a", function() require("harpoon"):list():add() end, desc = "Add to Harpoon" },
+        { "<C-e>", function() local h = require("harpoon"); h.ui:toggle_quick_menu(h:list()) end, desc = "Toggle Harpoon menu" },
+        { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "Harpoon file 1" },
+        { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "Harpoon file 2" },
+        { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "Harpoon file 3" },
+        { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "Harpoon file 4" },
 
         -- Yanky
         { "<leader>p", function() require("yanky.picker").actions.put("p") end, desc = "Open Yank History" },
@@ -80,112 +84,88 @@ function M.setup()
         { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
         { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after selection" },
         { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before selection" },
-        { "<c-y>", "<Plug>(YankyPreviousEntry)", desc = "Select previous entry through yank history" },
-        { "<c-n>", "<Plug>(YankyNextEntry)", desc = "Select next entry through yank history" },
-        { "<leader>pa", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
-        { "<leader>pb", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
+        { "<c-y>", "<Plug>(YankyPreviousEntry)", desc = "Previous yank history entry" },
+        { "<c-n>", "<Plug>(YankyNextEntry)", desc = "Next yank history entry" },
         { "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
         { "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
 
-        -- Misc leader mappings
-        { "<leader>so", "<cmd>so<cr>", desc = "Source file", nowait = false, remap = false },
-        { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline", nowait = false, remap = false },
-        { "<leader>r", ":%s/", desc = "Find and replace", nowait = false, remap = false },
-        { "<c-t>", "<cmd>SessionSearch<cr>", desc = "Session search", nowait = false, remap = false },
-        { "<leader>/", function() fzf.blines() end, desc = "Fuzzy search current buffer", nowait = false, remap = false },
-        { "<leader>vh", function() fzf.help_tags() end, desc = "Help tags", nowait = false, remap = false },
+        -- Theme / Diff / Hunks
+        { "<leader>t", group = "Theme" },
+        { "<leader>tt", function() require("samsden.theme").pick() end, desc = "Theme picker" },
+        { "<leader>d", group = "Diff" },
+        { "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "Diff: open repo view" },
+        { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diff: file history" },
+        { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Diff: close" },
+        { "<leader>dw", function() require("samsden.workspace-diff").pick() end, desc = "Diff: workspace (all repos)" },
+        { "<leader>h", group = "Hunks" },
+
+        -- Misc
+        { "<leader>so", "<cmd>so<cr>", desc = "Source file" },
+        { "<leader>r", ":%s/", desc = "Find and replace" },
+        { "<leader>/", fzf("blines"), desc = "Fuzzy search current buffer" },
 
         -- Navigation and movement
-        { "jk", "<ESC>", mode = "i", desc = "Exit insert mode", nowait = false, remap = false },
-        { "\\", "<C-w>w", desc = "Switch window", nowait = false, remap = false },
-        { ",", "<C-w>", desc = "Window command prefix", nowait = false, remap = false },
-        { "U", "<C-r>", desc = "Redo", nowait = false, remap = false },
-        { "H", "^", desc = "Go to line start", nowait = false, remap = false },
-        { "L", "$", desc = "Go to line end", nowait = false, remap = false },
-        { "n", "nzz", desc = "Next search result (centered)", nowait = false, remap = false },
-        { "N", "Nzz", desc = "Previous search result (centered)", nowait = false, remap = false },
-        { "k", "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move up (display lines)", nowait = false, remap = false },
-        { "j", "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move down (display lines)", nowait = false, remap = false },
+        { "jk", "<ESC>", mode = "i", desc = "Exit insert mode" },
+        { "\\", "<C-w>w", desc = "Switch window" },
+        { ",", "<C-w>", desc = "Window command prefix" },
+        { "U", "<C-r>", desc = "Redo" },
+        { "H", "^", desc = "Go to line start" },
+        { "L", "$", desc = "Go to line end" },
+        { "n", "nzz", desc = "Next search result (centered)" },
+        { "N", "Nzz", desc = "Previous search result (centered)" },
+        { "k", "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move up (display lines)" },
+        { "j", "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move down (display lines)" },
 
         -- Visual mode
-        { "<", "<gv", mode = "v", desc = "Indent left and reselect", nowait = false, remap = false },
-        { ">", ">gv", mode = "v", desc = "Indent right and reselect", nowait = false, remap = false },
-        { "K", ":move '<-2<CR>gv-gv", mode = "x", desc = "Move selection up", nowait = false, remap = false },
-        { "J", ":move '>+1<CR>gv-gv", mode = "x", desc = "Move selection down", nowait = false, remap = false },
+        { "<", "<gv", mode = "v", desc = "Indent left and reselect" },
+        { ">", ">gv", mode = "v", desc = "Indent right and reselect" },
+        { "K", ":move '<-2<CR>gv-gv", mode = "x", desc = "Move selection up" },
+        { "J", ":move '>+1<CR>gv-gv", mode = "x", desc = "Move selection down" },
 
         -- Text objects and editing
-        { "cw", '"_ciw', desc = "Change word (no yank)", nowait = false, remap = false },
-        { "dw", '"_diw', desc = "Delete word (no yank)", nowait = false, remap = false },
-        { "vw", "viw", desc = "Select word", nowait = false, remap = false },
-        { "vC", 'vi"', desc = "Select inside double quotes", nowait = false, remap = false },
-        { "vb", "vib", desc = "Select inside parentheses", nowait = false, remap = false },
-        { "vc", "vi'", desc = "Select inside single quotes", nowait = false, remap = false },
-        { "vB", "viB", desc = "Select inside braces", nowait = false, remap = false },
-        { "dB", "diB", desc = "Delete inside braces", nowait = false, remap = false },
-        { "db", "dib", desc = "Delete inside parentheses", nowait = false, remap = false },
-        { "dc", "di'", desc = "Delete inside single quotes", nowait = false, remap = false },
-        { "dC", 'di"', desc = "Delete inside double quotes", nowait = false, remap = false },
-        { "cB", "ciB", desc = "Change inside braces", nowait = false, remap = false },
-        { "cb", "cib", desc = "Change inside parentheses", nowait = false, remap = false },
-        { "cc", '"_ci\'', desc = "Change inside single quotes (no yank)", nowait = false, remap = false },
-        { "cC", '"_ci"', desc = "Change inside double quotes (no yank)", nowait = false, remap = false },
-        { "x", '"_x', desc = "Delete character (no yank)", nowait = false, remap = false },
-        { "S", '"_S', desc = "Substitute line (no yank)", nowait = false, remap = false },
-        { "s", '"_s', desc = "Substitute character (no yank)", nowait = false, remap = false },
-        { "<cr>", '"_ciw', desc = "Change word (no yank)", nowait = false, remap = false },
+        { "cw", '"_ciw', desc = "Change word (no yank)" },
+        { "dw", '"_diw', desc = "Delete word (no yank)" },
+        { "vw", "viw", desc = "Select word" },
+        { "vC", 'vi"', desc = "Select inside double quotes" },
+        { "vb", "vib", desc = "Select inside parentheses" },
+        { "vc", "vi'", desc = "Select inside single quotes" },
+        { "vB", "viB", desc = "Select inside braces" },
+        { "dB", "diB", desc = "Delete inside braces" },
+        { "db", "dib", desc = "Delete inside parentheses" },
+        { "dc", "di'", desc = "Delete inside single quotes" },
+        { "dC", 'di"', desc = "Delete inside double quotes" },
+        { "cB", "ciB", desc = "Change inside braces" },
+        { "cb", "cib", desc = "Change inside parentheses" },
+        { "cc", '"_ci\'', desc = "Change inside single quotes (no yank)" },
+        { "cC", '"_ci"', desc = "Change inside double quotes (no yank)" },
+        { "x", '"_x', desc = "Delete character (no yank)" },
+        { "S", '"_S', desc = "Substitute line (no yank)" },
+        { "s", '"_s', desc = "Substitute character (no yank)" },
+        { "<cr>", '"_ciw', desc = "Change word (no yank)" },
 
         -- Control mappings
-        { "<C-s>", "<cmd>update!<CR><ESC>", mode = { "n", "i" }, desc = "Save file", nowait = false, remap = false },
-        { "<C-q>", "<cmd>wa<CR><ESC>", mode = { "n", "i" }, desc = "Save all files", nowait = false, remap = false },
-        { "<C-j>", "10j", desc = "Jump down 10 lines", nowait = false, remap = false },
-        { "<C-k>", "10k", desc = "Jump up 10 lines", nowait = false, remap = false },
-        { "<C-d>", "<C-d>zz", desc = "Half page down (centered)", nowait = false, remap = false },
-        { "<C-u>", "<C-u>zz", desc = "Half page up (centered)", nowait = false, remap = false },
-        { "<C-p>", function() fzf.combine({ pickers = "buffers;" .. file_picker() })end, desc = "Find files", nowait = false, remap = false },
-        { "<C-r>", "<C-^>", desc = "Switch to alternate buffer", nowait = false, remap = false },
-        { "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle Harpoon menu", nowait = false, remap = false },
-        { "<C-f>", function() fzf.buffers() end, desc = "Find buffers", nowait = false, remap = false },
-
-        -- Copilot (Insert Mode)
-        -- { "<C-g>", "<Plug>(copilot-accept-word)", mode = "i", desc = "Accept Copilot word", nowait = false, remap = false },
-        -- { "<C-d>", "<Plug>(copilot-next)", mode = "i", desc = "Next Copilot suggestion", nowait = false, remap = false },
-        -- { "<C-f>", "<Plug>(copilot-previous)", mode = "i", desc = "Previous Copilot suggestion", nowait = false, remap = false },
-        -- { "<C-v>", "<Plug>(copilot-accept-line)", mode = "i", desc = "Accept Copilot line", nowait = false, remap = false },
-        -- { "<C-c>", "<Cmd>Copilot<CR>", mode = "i", desc = "Open Copilot", nowait = false, remap = false },
+        { "<C-s>", "<cmd>update!<CR><ESC>", mode = { "n", "i" }, desc = "Save file" },
+        { "<C-q>", "<cmd>wa<CR><ESC>", mode = { "n", "i" }, desc = "Save all files" },
+        { "<C-j>", "10j", desc = "Jump down 10 lines" },
+        { "<C-k>", "10k", desc = "Jump up 10 lines" },
+        { "<C-d>", "<C-d>zz", desc = "Half page down (centered)" },
+        { "<C-u>", "<C-u>zz", desc = "Half page up (centered)" },
+        { "<C-p>", function() require("fzf-lua").combine({ pickers = "buffers;" .. file_picker() }) end, desc = "Find files" },
+        { "<C-r>", "<C-^>", desc = "Switch to alternate buffer" },
+        { "<C-f>", fzf("buffers"), desc = "Find buffers" },
 
         -- Arrow keys for resizing
-        { "<Left>", ":vertical resize +1<CR>", desc = "Increase window width", nowait = false, remap = false },
-        { "<Right>", ":vertical resize -1<CR>", desc = "Decrease window width", nowait = false, remap = false },
-        { "<Up>", ":resize -1<CR>", desc = "Decrease window height", nowait = false, remap = false },
-        { "<Down>", ":resize +1<CR>", desc = "Increase window height", nowait = false, remap = false },
+        { "<Left>", ":vertical resize +1<CR>", desc = "Increase window width" },
+        { "<Right>", ":vertical resize -1<CR>", desc = "Decrease window width" },
+        { "<Up>", ":resize -1<CR>", desc = "Decrease window height" },
+        { "<Down>", ":resize +1<CR>", desc = "Increase window height" },
 
-        -- Special keys
-        { "<ESC>", ":nohlsearch<Bar>:echo<CR>", desc = "Clear search highlight", nowait = false, remap = false },
-        { "<esc>", [[<C-\><C-n>]], mode = "t", desc = "Exit terminal mode", nowait = false, remap = false },
+        { "<esc>", [[<C-\><C-n>]], mode = "t", desc = "Exit terminal mode" },
 
-        -- LSP specific (buffer local)
-        { "gd", function() fzf.lsp_definitions() end, desc = "Go to definition", nowait = false, remap = false },
-        { "K",  function()  vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 } end, desc = "Hover documentation", nowait = false, remap = false },
-        { "[d", function() vim.diagnostic.goto_next() end, desc = "Next diagnostic", nowait = false, remap = false },
-        { "]d", function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic", nowait = false, remap = false },
-        { "gr", function() fzf.lsp_references() end, desc = "Go to references", nowait = false, remap = false },
-        { "gi", function() fzf.lsp_implementations() end, desc = "Go to implementations", nowait = false, remap = false },
-
-
-        -- Tree navigation
-        { "?", api.tree.toggle_help, desc = "Toggle nvim-tree help", nowait = false, remap = false },
-        { "tt", api.tree.toggle, desc = "Toggle nvim-tree float", nowait = false, remap = false },
-
-        -- Folding
-        { "zR", require('ufo').openAllFolds, desc = "Open all folds", nowait = false, remap = false },
-        { "zM", require('ufo').closeAllFolds, desc = "Close all folds", nowait = false, remap = false },
-
-        -- Theme / Diff / Hunks (groups for which-key popup)
-        { "<leader>t", group = "Theme" },
-        { "<leader>d", group = "Diff" },
-        { "<leader>h", group = "Hunks" },
-    }
-    wk.add(mappings)
+        -- Folding (nvim-ufo)
+        { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+        { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+    })
 end
 
 return M

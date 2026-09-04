@@ -1,15 +1,11 @@
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
-vim.g.copilot_filetypes = {
-    markdown = true,
-    mdx = true
-}
 vim.o.winborder = 'rounded'
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 0
-vim.opt.splitright = true -- vertical split to the right, for github copilot panel C-c
-vim.opt.ignorecase = true -- ignore case in search patterns
+vim.opt.splitright = true
+vim.opt.ignorecase = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -17,9 +13,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.fcs = 'eob: ' -- hide ~ at end of file
 
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
 vim.opt.timeoutlen = 300
 
 vim.opt.smartindent = true
@@ -31,7 +24,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-vim.g.autochdir = false
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -44,10 +36,19 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.api.nvim_set_keymap('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]],
-    { noremap = true, silent = true })
+-- folding (nvim-ufo)
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
--- color scheme and backgrounds
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
+vim.keymap.set('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]], { silent = true })
+
+vim.filetype.add({ extension = { mdx = "markdown" } })
+
+local au = vim.api.nvim_create_autocmd
+local grp = vim.api.nvim_create_augroup("samsden", { clear = true })
+au("TextYankPost", { group = grp, callback = function() vim.hl.on_yank({ higroup = "Search", timeout = 200 }) end })
+au("FileType", { group = grp, command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" })
+au("FileType", { group = grp, pattern = "markdown", command = "setlocal wrap spell" })
+au("FileType", { group = grp, pattern = "qf", command = "setlocal nobuflisted" })
+au("VimResized", { group = grp, command = "wincmd =" })

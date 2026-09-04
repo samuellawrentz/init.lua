@@ -2,28 +2,18 @@
 
 ## Build/Test Commands
 - No build system - this is a Neovim configuration
-- Test configuration: `nvim --headless -c "lua print('Config loaded')" -c "qa"`
+- Test configuration: `nvim --headless "+lua vim.schedule(function() vim.cmd('qa!') end)"` (no output = clean load)
 - Plugin management: `:Lazy` (install/update/sync plugins)
 - LSP management: `:Mason` (install/manage language servers)
 
-## Code Style Guidelines
-- **Language**: Lua for all configuration files
-- **Indentation**: 4 spaces (no tabs) - see `lua/samsden/set.lua:12-15`
-- **File structure**: `init.lua` → `lua/samsden/` → `after/plugin/`
-- **Imports**: Use `require()` for modules, lazy loading preferred
-- **Naming**: snake_case for files/functions, kebab-case for plugin names
-- **Comments**: Minimal, only for complex logic explanations
-- **Error handling**: Use pcall() for plugin loading when needed
+## Layout
+- `init.lua` → `lua/samsden/set.lua` (options, autocmds) → `lua/samsden/lazy.lua` (all plugin specs, config via `opts`) → `lua/samsden/theme.lua` (persisted colorscheme in `.theme`)
+- All keymaps: `lua/config/whichkey.lua`, except buffer-local gitsigns maps in its `on_attach`
+- `lua/samsden/workspace-diff.lua`: multi-repo changed-files picker (`<leader>dw`)
+- No `after/plugin/` — a `require()` there loads every plugin at startup and defeats lazy loading. Put plugin config in the spec's `opts`/`config`; `require()` plugins only inside keymap callbacks.
 
-## Key Conventions
-- Leader key: `<space>` (set in `lua/samsden/set.lua:2`)
-- Plugin management via lazy.nvim with lazy loading
-- LSP configuration centralized in `after/plugin/lsp.lua`
-- Keymaps organized in `lua/config/whichkey.lua` using which-key groups
-- Settings in `lua/samsden/set.lua` following Neovim best practices
-
-## Plugin Architecture
-- Core plugins: telescope, nvim-tree, lualine, treesitter, harpoon
-- LSP: lsp-zero + mason + nvim-cmp for completion
-- Colorscheme: rose-pine theme
-- All plugins configured with lazy loading for performance
+## Conventions
+- Leader key: `<space>`; 4-space indent; snake_case files
+- LSP: mason + mason-lspconfig v2 (auto `vim.lsp.enable`) + nvim-cmp; no lsp-zero
+- Lint/format: biome via nvim-lint + `biome check --write` on BufWritePre
+- Colorschemes are `lazy = true`; lazy.nvim loads them on `:colorscheme`
