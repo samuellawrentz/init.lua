@@ -37,7 +37,6 @@ function M.setup()
         { "<leader>fh", fzf("help_tags"), desc = "Help tags" },
         { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
         { "tt", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
-        { "gb", function() require("snipe").open_buffer_menu() end, desc = "Snipe buffer menu" },
         { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
 
         -- LSP

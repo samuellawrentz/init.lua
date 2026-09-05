@@ -235,13 +235,6 @@ require("lazy").setup({
   { "hedyhli/outline.nvim", cmd = { "Outline", "OutlineOpen" }, opts = {} },
 
   {
-    "pwntester/octo.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua", "nvim-tree/nvim-web-devicons" },
-    cmd = "Octo",
-    opts = { picker = "fzf-lua" },
-  },
-
-  {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
     event = { "BufReadPost", "BufNewFile" },
@@ -399,7 +392,6 @@ require("lazy").setup({
 
   { "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
   { "cameronr/hbac.nvim", event = "VeryLazy", opts = { threshold = 25 } },
-  { "leath-dub/snipe.nvim", lazy = true, opts = {} },
 }, {
   ui = { border = "rounded" },
   performance = {
