@@ -39,6 +39,11 @@ require("lazy").setup({
         preview = { layout = 'vertical', vertical = 'up:60%', default = 'bat' },
       },
       previewers = { bat = { args = "--style=numbers,changes --color always", theme = 'Coldark-Dark' } },
+      actions = { files = { true, ["ctrl-y"] = { fn = function(sel, o)
+        local path = require("fzf-lua.path").entry_to_file(sel[1], o).path
+        vim.fn.setreg("+", path)
+        vim.notify("Copied: " .. path)
+      end, exec_silent = true } } },
       files = { prompt = 'Files❯ ', git_icons = true, path_shorten = 1 },
       grep = { prompt = 'Rg❯ ' },
       buffers = { prompt = 'Buffers❯ ', sort_mru = true },
@@ -69,9 +74,18 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig", "hrsh7th/cmp-nvim-lsp" },
-    opts = { ensure_installed = { "ts_ls", "gopls" } },
+    opts = { ensure_installed = { "ts_ls", "gopls", "basedpyright", "jinja_lsp" } },
     config = function(_, opts)
       vim.lsp.config("*", { capabilities = require("cmp_nvim_lsp").default_capabilities() })
+      vim.lsp.config("basedpyright", {
+        settings = { basedpyright = { analysis = { typeCheckingMode = "standard" } } },
+        before_init = function(_, config)
+          local py = (config.root_dir or vim.fn.getcwd()) .. "/.venv/bin/python"
+          if vim.fn.executable(py) == 1 then
+            config.settings.python = { pythonPath = py }
+          end
+        end,
+      })
       require("mason-lspconfig").setup(opts)
     end,
   },
@@ -219,7 +233,7 @@ require("lazy").setup({
       require("nvim-treesitter").install({
         "lua", "vim", "vimdoc", "query", "javascript", "typescript", "tsx",
         "html", "css", "json", "yaml", "toml", "markdown", "markdown_inline",
-        "go", "fish", "php",
+        "go", "fish", "php", "python", "jinja", "jinja_inline",
       })
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("samsden-treesitter", { clear = true }),
@@ -392,6 +406,17 @@ require("lazy").setup({
 
   { "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
   { "cameronr/hbac.nvim", event = "VeryLazy", opts = { threshold = 25 } },
+
+  -- Claude Code IDE integration (native terminal, no snacks)
+  {
+    "coder/claudecode.nvim",
+    cmd = {
+      "ClaudeCode", "ClaudeCodeFocus", "ClaudeCodeSelectModel", "ClaudeCodeAdd", "ClaudeCodeSend",
+      "ClaudeCodeTreeAdd", "ClaudeCodeStatus", "ClaudeCodeStart", "ClaudeCodeStop", "ClaudeCodeOpen",
+      "ClaudeCodeClose", "ClaudeCodeDiffAccept", "ClaudeCodeDiffDeny", "ClaudeCodeCloseAllDiffs",
+    },
+    opts = { terminal = { provider = "native" } },
+  },
 }, {
   ui = { border = "rounded" },
   performance = {

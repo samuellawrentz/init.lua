@@ -68,6 +68,19 @@ function M.setup()
         { "<leader>gr", ":OpenInGHRepo <CR>", desc = "Open repo in GitHub" },
         { "<leader>gf", ":OpenInGHFile <CR>", desc = "Open file in GitHub", mode = { "n", "v" } },
 
+        -- Claude Code
+        { "<leader>c", group = "Claude Code" },
+        { "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+        { "<leader>cf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+        { "<leader>cr", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+        { "<leader>cC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+        { "<leader>cm", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+        { "<leader>cb", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+        { "<leader>cs", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send selection to Claude" },
+        { "<leader>cs", "<cmd>ClaudeCodeTreeAdd<cr>", desc = "Add file (in file tree)" },
+        { "<leader>ca", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+        { "<leader>cd", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+
         -- Harpoon
         { "<leader>a", function() require("harpoon"):list():add() end, desc = "Add to Harpoon" },
         { "<C-e>", function() local h = require("harpoon"); h.ui:toggle_quick_menu(h:list()) end, desc = "Toggle Harpoon menu" },
@@ -93,6 +106,7 @@ function M.setup()
         { "<leader>tt", function() require("samsden.theme").pick() end, desc = "Theme picker" },
         { "<leader>d", group = "Diff" },
         { "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "Diff: open repo view" },
+        { "<leader>db", "<cmd>DiffviewOpen origin/main...HEAD<cr>", desc = "Diff: branch vs main" },
         { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diff: file history" },
         { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Diff: close" },
         { "<leader>dw", function() require("samsden.workspace-diff").pick() end, desc = "Diff: workspace (all repos)" },

@@ -43,7 +43,7 @@ vim.o.foldenable = true
 
 vim.keymap.set('n', 'D', [[<Cmd>put = strftime('%Y-%m-%d -- %B %d, %a, %Y -- %H:%M')<CR>]], { silent = true })
 
-vim.filetype.add({ extension = { mdx = "markdown" } })
+vim.filetype.add({ extension = { mdx = "markdown", njk = "jinja" } })
 
 local au = vim.api.nvim_create_autocmd
 local grp = vim.api.nvim_create_augroup("samsden", { clear = true })
